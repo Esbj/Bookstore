@@ -1,20 +1,41 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
+require("dotenv").config();
+var express = require("express");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
+const mongoose = require("mongoose");
+const ordersRouter = require("./routes/orders");
+const booksRouter = require("./routes/books");
+var cors = require("cors");
 var app = express();
 
-app.use(logger('dev'));
+app.use(cors());
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+async function run() {
+    try {
+        mongoose.connect(process.env.MONGODB_CONNECTIONSTRING, {
+            useUnifiedTopology: true,
+        });
+        console.log("Connected to database");
+    } catch (error) {
+        console.error(error);
+    }
+}
+// mongoose
+//     .connect(process.env.MONGODB_CONNECTIONSTRING, { useUnifiedTopology: true })
+//     .then(() => {
+//         console.log("Connected to the database!");
+//         app.locals.db = mongoose.connection;
+//     })
+//     .catch((err) => console.error(err));
+
+app.use("/orders", ordersRouter);
+app.use("/books", booksRouter);
+run();
 
 module.exports = app;
