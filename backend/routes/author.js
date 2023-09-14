@@ -1,17 +1,23 @@
-var express = require("express");
-var authorRouter = express.Router();
+const express = require('express');
+const authorRouter = express.Router();
 
-const authorModel = require("../models/authorModel");
+const authorModel = require('../models/authorModel');
+const bookModel = require('../models/bookModel');
 
-authorRouter.get("/", async (req, res) => {
-    const author = await authorModel.find();
-    if (author) {
-      res.status(200).json(author);
-    } else {
-      res.status(404).json({ message: "Author not found" });
-      console.log("There are no author with this name");
+authorRouter.get('/', async (req, res) => {
+  try {
+    const authors = await authorModel.find();
+    const authorsWithBooks = [];
+    for (const author of authors) {
+      const books = await bookModel.find({ author: author.name });
+      const authorWithBooks = { ...author.toObject(), books };
+      authorsWithBooks.push(authorWithBooks);
     }
-  });
-
+    res.status(200).json(authorsWithBooks);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 module.exports = authorRouter;

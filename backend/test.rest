@@ -10,12 +10,9 @@ Content-Type: application/json
 
 ###
 
-// === All authors/books ===
+// === All authors  ===
 GET http://localhost:3000/author
 
 Content-Type: application/json
 
-{
-  "name": "Rebecca Yarros",
-  "books": "Fourth Wing"
-}
+

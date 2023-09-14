@@ -8,7 +8,7 @@ const AuthorSchema = mongoose.Schema({
         required: true,
     },
     books: [{
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: "Book",
     }]
  
