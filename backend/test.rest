@@ -1,5 +1,9 @@
-POST http://localhost:3000/books Content-Type: application/json
+POST http://localhost:3000/books/
+Content-Type: application/json
 
 {
-"title": "Game of Thrones", "author": "George RR Martin", "description": "Dragons n shit", "price": 1,
+  "title": "Game of Thrones", 
+  "author": "George RR Martin", 
+  "description": "Dragons n shit", 
+  "price": 1
 }

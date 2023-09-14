@@ -26,13 +26,6 @@ async function run() {
         console.error(error);
     }
 }
-// mongoose
-//     .connect(process.env.MONGODB_CONNECTIONSTRING, { useUnifiedTopology: true })
-//     .then(() => {
-//         console.log("Connected to the database!");
-//         app.locals.db = mongoose.connection;
-//     })
-//     .catch((err) => console.error(err));
 
 app.use("/orders", ordersRouter);
 app.use("/books", booksRouter);
