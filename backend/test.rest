@@ -7,3 +7,15 @@ Content-Type: application/json
   "description": "Dragons n shit", 
   "price": 1
 }
+
+###
+
+// === All authors/books ===
+GET http://localhost:3000/author
+
+Content-Type: application/json
+
+{
+  "name": "Rebecca Yarros",
+  "books": "Fourth Wing"
+}

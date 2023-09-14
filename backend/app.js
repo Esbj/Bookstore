@@ -5,6 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const mongoose = require("mongoose");
 const ordersRouter = require("./routes/orders");
+const authorRouter = require("./routes/author");
 const booksRouter = require("./routes/books");
 var cors = require("cors");
 var app = express();
@@ -29,6 +30,7 @@ async function run() {
 
 app.use("/orders", ordersRouter);
 app.use("/books", booksRouter);
+app.use("/author", authorRouter);
 run();
 
 module.exports = app;
