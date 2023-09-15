@@ -7,3 +7,49 @@ Content-Type: application/json
   "description": "Dragons n shit", 
   "price": 1
 }
+###
+DELETE http://localhost:3000/books/
+Content-Type: application/json
+
+{
+"bookId": "6502cd810fa611a64280e771"
+}
+
+###
+PUT http://localhost:3000/books/ 
+Content-Type: application/json
+
+{
+"bookId": "6502cedcf5d14dd57a7f1e1d",
+"title": "Pippi på äventyr 2",
+"author": "Astrid Lindgren",
+"description": "Pippi på äventyr",
+"price": 14.99
+}
+
+###
+//Order Requests
+POST http://localhost:3000/orders/
+Content-Type: application/json
+
+{
+  "firstName": "Albin", 
+  "lastName": "Jönsson",
+  "address": { "zip": "54843", "streetAddress": "Albins väg 12A", "city": "Borås" },
+  "phoneNumber": "070584697",
+  "email": "Albin@live.se",
+  "books": ["6502cedcf5d14dd57a7f1e1d"
+],
+  "totalPrice": 11,
+  "shippingMethod": "Express",
+  "paymentMethod": "Swish"
+  
+}
+###
+PUT http://localhost:3000/orders/
+Content-Type: application/json
+
+{
+  "orderId": "65041559235e81dd44c8c2a2",  
+  "status": "Under Transportation"  
+}
