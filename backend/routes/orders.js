@@ -1,6 +1,7 @@
 var express = require("express");
 var orderRouter = express.Router();
 const orderModel = require("../models/orderModel");
+const bookModel = require("../models/bookModel");
 
 orderRouter.get("/", async (req, res) => {
     const orders = await orderModel.find({});
@@ -56,7 +57,7 @@ orderRouter.put("/", async (req, res) => {
         if (!order) {
             return res.status(404).send("This order does not exist");
         } else {
-            await bookModel.updateOne({ _id: orderId }, updatedStatus);
+            await orderModel.updateOne({ _id: orderId }, updatedStatus);
             res.send("Updated!");
         }
     } catch (error) {
