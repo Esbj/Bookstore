@@ -53,3 +53,12 @@ Content-Type: application/json
   "orderId": "65041559235e81dd44c8c2a2",  
   "status": "Under Transportation"  
 }
+
+###
+
+// === All authors  ===
+GET http://localhost:3000/author
+
+Content-Type: application/json
+
+
