@@ -18,7 +18,7 @@ booksRouter.get("/:id", async (req, res) => {
         }
 
         const authorId = book.author;
-        const author = await authorModel.findOne({name: authorName});
+        const author = await authorModel.findOne({ name: authorName });
 
         if (!author) {
             return res.status(404).json({ message: "Author not found" });
@@ -33,21 +33,25 @@ booksRouter.get("/:id", async (req, res) => {
 
 booksRouter.post("/", async (req, res) => {
     const newBook = req.body;
-    const addedBook = await bookModel.create(newBook);
-
-    const author = await authorModel.findOne({ name: newBook.author });
-    if (!author) {
-        const newAuthor = new authorModel({
-            name: newBook.author,
-            books: [addedBook],
-        });
-        await newAuthor.save();
+    const existingBooks = await bookModel.find({})
+    if (!existingBooks.filter((book) => newBook.isbn === book.isbn)) {
+        const addedBook = await bookModel.create(newBook);
+        const author = await authorModel.findOne({ name: newBook.author });
+        if (!author) {
+            const newAuthor = new authorModel({
+                name: newBook.author,
+                books: [addedBook],
+            });
+            await newAuthor.save();
+        } else {
+            author.books.push(addedBook);
+            await author.save();
+        }
+        res.status(201).json(addedBook);
     } else {
-        author.books.push(addedBook);
-        await author.save();
+        res.status(409).send("Book already exists")
     }
 
-    res.status(201).json(addedBook);
 });
 
 booksRouter.delete("/", async (req, res) => {

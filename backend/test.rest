@@ -5,7 +5,21 @@ Content-Type: application/json
   "title": "Game of Thrones", 
   "author": "George RR Martin", 
   "description": "Dragons n shit", 
-  "price": 1
+  "price": 1,
+  "isbn": "ISBN: 9780553381689"
+}
+
+
+###
+POST http://localhost:3000/books/
+Content-Type: application/json
+
+{
+  "title": "Tre berättelser om Pippi", 
+  "author": "Astrid Lindgren", 
+  "description": "Pippi på äventyr", 
+  "price": 2,
+  "isbn": "ISBN: 9789129710328"
 }
 ###
 DELETE http://localhost:3000/books/
