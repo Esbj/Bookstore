@@ -5,7 +5,7 @@ const BookSchema = new mongoose.Schema({
     author: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },
-    isbn: { type: String },
+    isbn: { type: String, required: true },
 });
 const BooksModel = mongoose.model("book", BookSchema);
 module.exports = BooksModel;
