@@ -1,15 +1,22 @@
-const mongoose = require("mongoose")
-import bookModel from "./bookModel";
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-
-const OrderSchema = mongoose.Schema({ 
+const OrderSchema = new Schema({
     firstName: String,
     lastName: String,
-    address: {zip: String, streetAddress: String, city: String},
+    address: { zip: String, streetAddress: String, city: String },
     phoneNumber: String,
     email: String,
-    books: [bookModel],
-    price: Number,
-})
+    books: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "book",
+        },
+    ],
+    totalPrice: Number,
+    shippingMethod: String,
+    paymentMethod: String,
+    status: String,
+});
 
 module.exports = mongoose.model("order", OrderSchema);
