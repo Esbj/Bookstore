@@ -1,0 +1,47 @@
+import { useContext } from "react";
+import { CartContext } from "../CartContext";
+
+export default function Cart() {
+    const { cart, decreaseQuantity, increaseQuantity } =
+        useContext(CartContext);
+    const totalPrice = () => {
+        let total = 0;
+        cart.forEach((book) => {
+            const subtotal = book.price * book.quantity;
+            total += subtotal;
+        });
+        return total;
+    };
+
+    return (
+        <div
+            style={{
+                position: "fixed",
+                top: "6rem",
+                right: "2rem",
+                width: "50rem",
+            }}
+        >
+            <h3>Your Cart</h3>
+            {cart.map((book, index) => (
+                <div key={index}>
+                    <p>
+                        {book.title} á {book.price} $
+                    </p>
+                    <div style={{ display: "flex" }}>
+                        <button onClick={() => decreaseQuantity(book)}>
+                            -
+                        </button>
+                        <p>{book.quantity} pcs</p>
+                        <button onClick={() => increaseQuantity(book)}>
+                            +
+                        </button>
+                    </div>
+                </div>
+            ))}
+            <h4>Total: {totalPrice()} $</h4>
+            <h4>Shipping excluded</h4>
+            <button>Checkout</button>
+        </div>
+    );
+}
