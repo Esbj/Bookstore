@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react'
-type Props = {
-  url: string
-}
-export default function useBooks({ url }: Props) {
+import { useEffect as useMemo, useState } from 'react'
+import { Book } from '../data/book'
+
+export default function useFetch(url: string) {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
-  const [data, setData] = useState(null)
+  const [data, setData] = useState<Book[] | null>(null)
 
-  useEffect(() => {
+  useMemo(() => {
     fetch(url)
       .then(res => res.json())
       .then(data => setData(data))

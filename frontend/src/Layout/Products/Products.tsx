@@ -1,23 +1,16 @@
-import { useContext } from "react";
-import { MockedProducts } from "../../data/MockedProducts";
-import { CartContext } from "../../CartContext";
-import Cart from "../cart";
+import { useState } from "react";
+import HeadingToggle from "../../common/HeadingToggle/HeadingToggle";
+import { ProductBooks } from "../../Products/ProductBooks";
 
 export default function Products() {
-    const { addToCart } = useContext(CartContext);
+    const [selectedTab, setSElectedTab] = useState("Books")
+    const updateSelectedTab = (value: string) => {
+        setSElectedTab(value)
+    }
     return (
-        <div style={{ padding: "2rem" }}>
-            <Cart />
-            {MockedProducts.map((book) => (
-                <div key={book._id}>
-                    <p>{book.title}</p>
-                    <p>{book.author}</p>
-                    <p>
-                        {book.price} {" $"}
-                    </p>
-                    <button onClick={() => addToCart(book)}>Add to cart</button>
-                </div>
-            ))}
-        </div>
+        <>
+            <HeadingToggle selectedTab={selectedTab} updateSelectedTab={updateSelectedTab} />
+            {selectedTab === "Books" && <ProductBooks />}
+        </>
     );
 }
