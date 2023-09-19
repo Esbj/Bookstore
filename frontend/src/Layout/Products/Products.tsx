@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { MockedProducts } from "../../data/MockedProducts";
 import { CartContext } from "../../CartContext";
-import Cart from "../cart";
+import Cart from "../Cart";
 
 export default function Products() {
     const { addToCart } = useContext(CartContext);
@@ -19,5 +19,6 @@ export default function Products() {
                 </div>
             ))}
         </div>
+        
     );
 }
