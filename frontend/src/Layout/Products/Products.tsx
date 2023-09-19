@@ -1,8 +1,23 @@
+import { useContext } from "react";
+import { MockedProducts } from "../../data/MockedProducts";
+import { CartContext } from "../../CartContext";
+import Cart from "../cart";
+
 export default function Products() {
-  return (
-    <>
-      <h2>Books</h2>
-      <h2>Authors</h2>
-    </>
-  )
+    const { addToCart } = useContext(CartContext);
+    return (
+        <div style={{ padding: "2rem" }}>
+            <Cart />
+            {MockedProducts.map((book) => (
+                <div key={book._id}>
+                    <p>{book.title}</p>
+                    <p>{book.author}</p>
+                    <p>
+                        {book.price} {" $"}
+                    </p>
+                    <button onClick={() => addToCart(book)}>Add to cart</button>
+                </div>
+            ))}
+        </div>
+    );
 }
