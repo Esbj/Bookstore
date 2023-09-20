@@ -4,22 +4,9 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import "./AdminPage.scss";
+import { Order } from '../../data/OrderInterface';
+import { Book } from '../../data/BookInterface';
 
-interface Order {
-    _id: string;
-    firstName: string;
-    lastName: string;
-    status: string;
-
-}
-
-interface Book {
-    isbn: string,
-    title: string,
-    author: string,
-    price: number,
-
-}
 
 function AdminPage() {
     const [activeButton, setActiveButton] = React.useState('Orders');

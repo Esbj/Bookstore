@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Home.scss";
 import Button from '@mui/material/Button';
 import bookImage from './bookimage.jpeg';
@@ -6,13 +6,6 @@ import secondBook from './saga.jpg';
 import bookIcon from './books.jpg';
 
 function Home() {
-    // Get the current location
-    const location = useLocation();
-
-  
-    if (location.pathname === '/admin') {
-        return null; 
-    }
 
     return (
         <>

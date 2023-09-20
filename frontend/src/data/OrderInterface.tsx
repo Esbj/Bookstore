@@ -11,4 +11,5 @@ export interface Order {
     shippingMethod: { [key: string]: number };
     paymentMethod?: { [key: string]: string };
     status?: string;
+    _id?: number;
 }
