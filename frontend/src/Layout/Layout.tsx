@@ -1,8 +1,7 @@
-import { Button } from '@mui/material'
-import { Link } from 'react-router-dom'
+import Home from './Home/Home'
 
 export default function Layout() {
   return (
-    <Button variant="outlined"><Link to="/products"> Books!</Link></Button>
+    <Home />
   )
 }

@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useState } from "react";
-import { Book, CartProduct } from "./data/book";
+import { Book, CartProduct } from "./data/BookInterface";
 
 interface ContextValue {
     cart: CartProduct[];
@@ -7,6 +7,7 @@ interface ContextValue {
     decreaseQuantity: (book: Book) => void;
     increaseQuantity: (book: Book) => void;
     toggleCart: () => void;
+    totalPrice: () => number;
     isCartOpen: boolean;
 }
 
@@ -16,6 +17,7 @@ export const CartContext = createContext<ContextValue>({
     decreaseQuantity: () => {},
     increaseQuantity: () => {},
     toggleCart: () => {},
+    totalPrice: () => 0,
     isCartOpen: false,
 });
 
@@ -29,6 +31,15 @@ export default function CartProvider({ children }: Props) {
 
     const toggleCart = () => {
         setIsCartOpen(!isCartOpen);
+    };
+
+    const totalPrice = () => {
+        let total = 0;
+        cart.forEach((book) => {
+            const subtotal = book.price * book.quantity;
+            total += subtotal;
+        });
+        return total;
     };
 
     const addToCart = (book: Book) => {
@@ -99,6 +110,7 @@ export default function CartProvider({ children }: Props) {
                 decreaseQuantity,
                 increaseQuantity,
                 isCartOpen,
+                totalPrice,
                 toggleCart,
             }}
         >
