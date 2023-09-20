@@ -1,13 +1,14 @@
 import { useState, useContext, useEffect } from "react";
 import { Book } from "../data/BookInterface";
 import { CartContext } from "../CartContext";
-import { Order } from "../data/OrderInterface";
+import { Order, ShippingMethod } from "../data/OrderInterface";
 import { useNavigate } from "react-router-dom";
 import { OrderContext } from "../OrderContext";
 
 export default function Shipping() {
     const { cart, totalPrice } = useContext(CartContext);
-    const { order, setOrder } = useContext(OrderContext);
+    const { order, setOrder, shippingMethod, setShippingMethod } =
+        useContext(OrderContext);
 
     const navigate = useNavigate();
     const [firstName, setFirstName] = useState("");
@@ -23,7 +24,7 @@ export default function Shipping() {
     const [totalPriceWithShipping, setTotalPriceWithShipping] = useState(
         totalPrice()
     );
-    const [shippingMethod, setShippingMethod] = useState<{
+    const [shipping, setShipping] = useState<{
         [Method: string]: {
             cost: number;
             shippingTime: number;
@@ -37,12 +38,12 @@ export default function Shipping() {
 
     useEffect(() => {
         let shippingCost = 0;
-        if (shippingMethod["Method1"]) {
-            shippingCost = shippingMethod["Method1"].cost;
-        } else if (shippingMethod["Method2"]) {
-            shippingCost = shippingMethod["Method2"].cost;
-        } else if (shippingMethod["Method3"]) {
-            shippingCost = shippingMethod["Method3"].cost;
+        if (shipping["Method1"]) {
+            shippingCost = shipping["Method1"].cost;
+        } else if (shipping["Method2"]) {
+            shippingCost = shipping["Method2"].cost;
+        } else if (shipping["Method3"]) {
+            shippingCost = shipping["Method3"].cost;
         }
         let total = 0;
         cart.forEach((book) => {
@@ -50,13 +51,13 @@ export default function Shipping() {
             total += subtotal;
         });
         setTotalPriceWithShipping(total + shippingCost);
-    }, [cart, shippingMethod]);
+    }, [cart, shipping]);
 
     useEffect(() => {
-        if (order.length > 0) {
+        if (order.length > 0 && shippingMethod.length > 0) {
             navigate("/payment");
         }
-    }, [order, navigate]);
+    }, [order, shippingMethod, navigate]);
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
@@ -68,11 +69,17 @@ export default function Shipping() {
             email,
             books,
             totalPriceWithShipping,
-            shippingMethod: shippingMethod,
         };
+        const selectedShippingMethod: ShippingMethod = {
+            shippingMethod: shipping,
+        };
+
         console.log(newOrder);
+        console.log(selectedShippingMethod);
         setOrder([...order, newOrder]);
+        setShippingMethod([...shippingMethod, selectedShippingMethod]);
         console.log(order);
+        console.log(shippingMethod);
     };
     return (
         <div
@@ -151,7 +158,7 @@ export default function Shipping() {
                         type="radio"
                         name="deliveryOption"
                         value="Method1"
-                        checked={shippingMethod["Method1"] !== undefined}
+                        checked={shipping["Method1"] !== undefined}
                         onChange={(e) => {
                             const shippingTime = 5; // Set your shipping time here
                             const currentDate = new Date();
@@ -160,7 +167,7 @@ export default function Shipping() {
                                     currentDate.getDate() + shippingTime
                                 )
                             );
-                            setShippingMethod({
+                            setShipping({
                                 [e.target.value]: {
                                     cost: 3,
                                     shippingTime,
@@ -172,12 +179,11 @@ export default function Shipping() {
                     <p>Delivery to parcel locker</p>
                     <p>3$</p>
                     <p>
-                        Shipping time: {shippingMethod["Method1"]?.shippingTime}{" "}
-                        days
+                        Shipping time: {shipping["Method1"]?.shippingTime} days
                     </p>
                     <p>
                         Expected delivery:{" "}
-                        {shippingMethod[
+                        {shipping[
                             "Method1"
                         ]?.expectedDelivery.toLocaleDateString()}
                     </p>
@@ -186,7 +192,7 @@ export default function Shipping() {
                         type="radio"
                         name="deliveryOption"
                         value="Method2"
-                        checked={shippingMethod["Method2"] !== undefined}
+                        checked={shipping["Method2"] !== undefined}
                         onChange={(e) => {
                             const shippingTime = 2; // Set your shipping time here
                             const currentDate = new Date();
@@ -195,7 +201,7 @@ export default function Shipping() {
                                     currentDate.getDate() + shippingTime
                                 )
                             );
-                            setShippingMethod({
+                            setShipping({
                                 [e.target.value]: {
                                     cost: 6,
                                     shippingTime,
@@ -207,12 +213,11 @@ export default function Shipping() {
                     <p>Delivery to home address</p>
                     <p>6$</p>
                     <p>
-                        Shipping time: {shippingMethod["Method2"]?.shippingTime}{" "}
-                        days
+                        Shipping time: {shipping["Method2"]?.shippingTime} days
                     </p>
                     <p>
                         Expected delivery:{" "}
-                        {shippingMethod[
+                        {shipping[
                             "Method2"
                         ]?.expectedDelivery.toLocaleDateString()}
                     </p>
@@ -221,7 +226,7 @@ export default function Shipping() {
                         type="radio"
                         name="deliveryOption"
                         value="Method3"
-                        checked={shippingMethod["Method3"] !== undefined}
+                        checked={shipping["Method3"] !== undefined}
                         onChange={(e) => {
                             const shippingTime = 1;
                             const currentDate = new Date();
@@ -230,7 +235,7 @@ export default function Shipping() {
                                     currentDate.getDate() + shippingTime
                                 )
                             );
-                            setShippingMethod({
+                            setShipping({
                                 [e.target.value]: {
                                     cost: 9,
                                     shippingTime,
@@ -242,12 +247,11 @@ export default function Shipping() {
                     <p>Delivery to office address</p>
                     <p>9$</p>
                     <p>
-                        Shipping time: {shippingMethod["Method3"]?.shippingTime}{" "}
-                        days
+                        Shipping time: {shipping["Method3"]?.shippingTime} days
                     </p>
                     <p>
                         Expected delivery:{" "}
-                        {shippingMethod[
+                        {shipping[
                             "Method3"
                         ]?.expectedDelivery.toLocaleDateString()}
                     </p>
@@ -256,16 +260,15 @@ export default function Shipping() {
                         <p>Subtotal: {totalPrice()}</p>
                         <p>
                             Shipping:{" "}
-                            {Object.values(shippingMethod)[0]?.cost ||
+                            {Object.values(shipping)[0]?.cost ||
                                 "No delivery selected"}
                         </p>
 
-                        {Object.values(shippingMethod).length > 0 ? (
+                        {Object.values(shipping).length > 0 ? (
                             <p>
                                 Total:{" "}
                                 {totalPrice() +
-                                    (Object.values(shippingMethod)[0]?.cost ||
-                                        0)}
+                                    (Object.values(shipping)[0]?.cost || 0)}
                             </p>
                         ) : null}
                     </div>
