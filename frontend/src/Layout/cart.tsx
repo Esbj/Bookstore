@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { CartContext } from "../CartContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
     const { cart, decreaseQuantity, increaseQuantity, totalPrice } =
         useContext(CartContext);
-
+    const navigate = useNavigate();
     return (
         <div
             style={{
@@ -37,7 +38,10 @@ export default function Cart() {
                     ))}
                     <h4>Total: {totalPrice()} $</h4>
                     <h4>Shipping excluded</h4>
-                    <button>Checkout</button>
+
+                    <button onClick={() => navigate("/shipping")}>
+                        Checkout
+                    </button>
                 </>
             )}
         </div>

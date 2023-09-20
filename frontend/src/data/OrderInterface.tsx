@@ -7,8 +7,14 @@ export interface Order {
     phoneNumber: string;
     email: string;
     books: Book[];
-    totalPrice: number;
-    shippingMethod: { [key: string]: number };
-    paymentMethod?: { [key: string]: string };
+    totalPriceWithShipping: number;
+    shippingMethod: {
+        [Method: string]: {
+            cost: number;
+            shippingTime: number;
+            expectedDelivery: Date;
+        };
+    };
+    paymentMethod?: { [Method: string]: string };
     status?: string;
 }
