@@ -2,15 +2,14 @@ body {
   background-color: #f3e5d0;
   margin: 0;
   padding: 0;
-}
-
-.frame-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-  box-sizing: border-box;
+  .frame-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+  }
 }
 
 /* Mobile */
@@ -26,46 +25,41 @@ body {
     box-shadow: 0px 0px 25px #00000033;
     padding: 20px;
     box-sizing: border-box;
-  }
+    .book-icon {
+      width: 120px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .title {
+      color: #291911;
+      font-size: 2rem;
+      font-family: "Abyssinica SIL";
+      text-align: center;
+      margin-top: 20px;
+    }
+    .desc {
+      color: #9d918b;
+      font-size: 16px;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .bookshelf {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      .book-image {
+        width: calc(50% - 10px);
+        max-width: 300px;
+        margin-bottom: 20px;
+      }
 
-  .book-icon {
-    width: 120px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .title {
-    color: #291911;
-    font-size: 2rem;
-    font-family: "Abyssinica SIL";
-    text-align: center;
-    margin-top: 20px;
-  }
-
-  .desc {
-    color: #9d918b;
-    font-size: 16px;
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  .bookshelf {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 20px;
-  }
-
-  .book-image {
-    width: calc(50% - 10px);
-    max-width: 300px;
-    margin-bottom: 20px;
-  }
-
-  .another-image {
-    width: calc(50% - 10px);
-    max-width: 300px;
-    margin-bottom: 20px;
+      .another-image {
+        width: calc(50% - 10px);
+        max-width: 300px;
+        margin-bottom: 20px;
+      }
+    }
   }
 }
 
@@ -82,51 +76,47 @@ body {
     background-color: #f7f3ee;
     border-radius: 20px;
     box-shadow: 15px 15px 50px #00000033;
-  }
 
-  .book-icon {
-    width: 120px;
-    padding: 20px;
-    margin-left: -8%;
-  }
+    .book-icon {
+      width: 200px;
+      margin-top: 2rem;
+    }
+    main {
+      .title {
+        color: #291911;
+        margin-top: 200px;
+        font-size: 4rem;
+        font-family: "Abyssinica SIL";
+      }
 
-  .title {
-    color: #291911;
-    margin-top: 200px;
-    left: 100px;
-    font-size: 4rem;
-    font-family: "Abyssinica SIL";
-  }
+      .desc {
+        color: #9d918b;
+        font-size: 20px;
+        margin-top: -20px;
+      }
+      a {
+        font-size: medium;
+      }
+      button:hover {
+        border: 1px solid #291911;
+      }
+      .bookshelf {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        .book-image {
+          width: calc(50% - 10px);
+          max-width: 300px;
+          margin-bottom: 20px;
+        }
 
-  .desc {
-    color: #9d918b;
-    font-size: 20px;
-    margin-top: -20px;
-  }
-
-  .bookshelf {
-    background-size: cover;
-    background-position: left;
-    width: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding: 7rem;
-    margin-top: -80px;
-  }
-
-  .book-image {
-    width: 25%;
-    margin: 40px;
-    box-shadow: 0px 0px 10px 0px #5d5c5c;
-  }
-
-  .another-image {
-    width: 200px;
-    height: 300px;
-    border-radius: 10px;
-    margin-top: 10px;
-    padding: 4rem;
+        .another-image {
+          width: calc(50% - 10px);
+          max-width: 300px;
+          margin-bottom: 20px;
+        }
+      }
+    }
   }
 }
