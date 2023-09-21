@@ -8,7 +8,6 @@ export interface Order {
     email: string;
     books: Book[];
     totalPriceWithShipping: number;
-
     status?: string;
 }
 
@@ -17,13 +16,13 @@ export interface ShippingMethod {
         [Method: string]: {
             cost: number;
             shippingTime: number;
-            expectedDelivery: Date;
+            expectedDelivery: string;
         };
     };
 }
 export interface PaymentMethod {
-    paymentMethod: [
-        swish: { phone: string },
-        card: { name: string; cardNumber: string; CVC: string; phone: string }
-    ];
+    paymentMethod: {
+        swish: { phone: string };
+        card: { name: string; cardNumber: string; CVC: string; phone: string };
+    };
 }

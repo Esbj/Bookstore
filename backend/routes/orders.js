@@ -17,7 +17,7 @@ orderRouter.post("/", async (req, res) => {
         email,
         books,
         price,
-        totalPrice,
+        totalPriceWithShipping,
         shippingMethod,
         paymentMethod,
     } = req.body;
@@ -30,7 +30,7 @@ orderRouter.post("/", async (req, res) => {
         email,
         books,
         price,
-        totalPrice,
+        totalPriceWithShipping,
         shippingMethod,
         paymentMethod,
         status: "Pending",

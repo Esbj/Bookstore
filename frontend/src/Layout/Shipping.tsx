@@ -28,7 +28,7 @@ export default function Shipping() {
         [Method: string]: {
             cost: number;
             shippingTime: number;
-            expectedDelivery: Date;
+            expectedDelivery: string;
         };
     }>({});
 
@@ -70,16 +70,17 @@ export default function Shipping() {
             books,
             totalPriceWithShipping,
         };
+
+
         const selectedShippingMethod: ShippingMethod = {
-            shippingMethod: shipping,
+            shippingMethod: {
+                ...shipping,
+                expectedDelivery: shipping.expectedDelivery,
+            },
         };
 
-        console.log(newOrder);
-        console.log(selectedShippingMethod);
         setOrder([...order, newOrder]);
         setShippingMethod([...shippingMethod, selectedShippingMethod]);
-        console.log(order);
-        console.log(shippingMethod);
     };
     return (
         <div
@@ -160,7 +161,7 @@ export default function Shipping() {
                         value="Method1"
                         checked={shipping["Method1"] !== undefined}
                         onChange={(e) => {
-                            const shippingTime = 5; // Set your shipping time here
+                            const shippingTime = 5; 
                             const currentDate = new Date();
                             const expectedDelivery = new Date(
                                 currentDate.setDate(
@@ -171,7 +172,7 @@ export default function Shipping() {
                                 [e.target.value]: {
                                     cost: 3,
                                     shippingTime,
-                                    expectedDelivery,
+                                    expectedDelivery: expectedDelivery.toLocaleString(),
                                 },
                             });
                         }}
@@ -185,7 +186,7 @@ export default function Shipping() {
                         Expected delivery:{" "}
                         {shipping[
                             "Method1"
-                        ]?.expectedDelivery.toLocaleDateString()}
+                        ]?.expectedDelivery}
                     </p>
                     <hr />
                     <input
@@ -194,7 +195,7 @@ export default function Shipping() {
                         value="Method2"
                         checked={shipping["Method2"] !== undefined}
                         onChange={(e) => {
-                            const shippingTime = 2; // Set your shipping time here
+                            const shippingTime = 2; 
                             const currentDate = new Date();
                             const expectedDelivery = new Date(
                                 currentDate.setDate(
@@ -205,7 +206,7 @@ export default function Shipping() {
                                 [e.target.value]: {
                                     cost: 6,
                                     shippingTime,
-                                    expectedDelivery,
+                                    expectedDelivery: expectedDelivery.toLocaleString(),
                                 },
                             });
                         }}
@@ -219,7 +220,7 @@ export default function Shipping() {
                         Expected delivery:{" "}
                         {shipping[
                             "Method2"
-                        ]?.expectedDelivery.toLocaleDateString()}
+                        ]?.expectedDelivery}
                     </p>
                     <hr />
                     <input
@@ -239,7 +240,7 @@ export default function Shipping() {
                                 [e.target.value]: {
                                     cost: 9,
                                     shippingTime,
-                                    expectedDelivery,
+                                    expectedDelivery:expectedDelivery.toLocaleString(),
                                 },
                             });
                         }}
@@ -253,7 +254,7 @@ export default function Shipping() {
                         Expected delivery:{" "}
                         {shipping[
                             "Method3"
-                        ]?.expectedDelivery.toLocaleDateString()}
+                        ]?.expectedDelivery}
                     </p>
                     <hr />
                     <div>

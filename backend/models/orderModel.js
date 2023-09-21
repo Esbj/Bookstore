@@ -9,13 +9,32 @@ const OrderSchema = new Schema({
     email: String,
     books: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "book",
+            _id: String,
+            title: String,
+            author: String,
+            description: String,
+            price: Number,
+            isbn: String,
+            quantity: Number,
         },
     ],
-    totalPrice: Number,
-    shippingMethod: String,
-    paymentMethod: String,
+    totalPriceWithShipping: Number,
+    shippingMethod: [
+        {
+            shippingMethod: {
+                type: Map,
+                of: {
+                    cost: Number,
+                    shippingTime: Number,
+                    expectedDelivery: String,
+                },
+            },
+        },
+    ],
+    paymentMethod: {
+        swish: { phone: String },
+        card: { name: String, cardNumber: String, CVC: String, phone: String },
+    },
     status: String,
 });
 
