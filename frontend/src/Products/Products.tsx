@@ -1,6 +1,6 @@
 import { useState } from "react";
 import HeadingToggle from "../common/HeadingToggle/HeadingToggle";
-import { ProductBooks } from "./ProductBooks";
+import { Books } from "../Books/Books";
 
 export default function Products() {
   const [selectedTab, setSelectedTab] = useState('Books');
@@ -8,7 +8,7 @@ export default function Products() {
   return (
     <>
       <HeadingToggle selectedTab={selectedTab} updateSelectedTab={updateSelectedTab} />
-      {selectedTab === "Books" && <ProductBooks />}
+      {selectedTab === "Books" && <Books />}
       {/* {selectedTab === "Authors" && <ProductAuthors />} */}
     </>
   )
