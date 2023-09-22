@@ -5,7 +5,7 @@ import { PaymentMethod } from "../data/OrderInterface";
 export default function Payment() {
   const { order, setPaymentMethod, shippingMethod } = useContext(OrderContext);
   const newOrder = order[order.length - 1];
-  const { phoneNumber, setPhoneNumber } = useState<string>("");
+
   const [payment, setPayment] = useState<PaymentMethod | null>(null);
 
   const handleSubmit = async (event: React.FormEvent) => {
