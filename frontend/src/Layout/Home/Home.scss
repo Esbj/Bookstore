@@ -1,5 +1,5 @@
 body {
-  background-color: #f3e5d0;
+  background-color: #F3E5D0;
   margin: 0;
   padding: 0;
 }
@@ -11,122 +11,123 @@ body {
   min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
+  margin-top: -100px;
 }
 
 /* Mobile */
 @media screen and (max-width: 1093px) {
   .round-corner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 600px;
-    background-color: #f7f3ee;
-    border-radius: 20px;
-    box-shadow: 0px 0px 25px #00000033;
-    padding: 20px;
-    box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
+      background-color: #F7F3EE;
+      border-radius: 20px;
+      box-shadow: 0px 0px 25px #00000033;
+      padding: 20px;
+      box-sizing: border-box;
   }
 
   .book-icon {
-    width: 120px;
-    margin-left: auto;
-    margin-right: auto;
+      width: 120px;
+      margin-left: auto;
+      margin-right: auto;
   }
 
   .title {
-    color: #291911;
-    font-size: 2rem;
-    font-family: "Abyssinica SIL";
-    text-align: center;
-    margin-top: 20px;
+      color: #291911;
+      font-size: 2rem;
+      font-family: 'Abyssinica SIL';
+      text-align: center;
+      margin-top: 20px;
   }
 
   .desc {
-    color: #9d918b;
-    font-size: 16px;
-    text-align: center;
-    margin-top: 10px;
+      color: #9D918B;
+      font-size: 16px;
+      text-align: center;
+      margin-top: 10px;
   }
 
   .bookshelf {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 20px;
   }
 
   .book-image {
-    width: calc(50% - 10px);
-    max-width: 300px;
-    margin-bottom: 20px;
+      width: calc(50% - 10px);
+      max-width: 300px;
+      margin-bottom: 20px;
   }
 
   .another-image {
-    width: calc(50% - 10px);
-    max-width: 300px;
-    margin-bottom: 20px;
+      width: calc(50% - 10px);
+      max-width: 300px;
+      margin-bottom: 20px;
   }
 }
 
 /* Desktop */
 @media screen and (min-width: 1094px) {
   .round-corner {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: flex-start;
-    padding-left: 100px;
-    min-width: 1200px;
-    min-height: 700px;
-    background-color: #f7f3ee;
-    border-radius: 20px;
-    box-shadow: 15px 15px 50px #00000033;
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      justify-content: flex-start;
+      padding-left: 100px;
+      max-width: 1200px;
+      max-height: 700px;
+      background-color: #F7F3EE;
+      border-radius: 20px;
+      box-shadow: 15px 15px 50px #78787833;
   }
 
   .book-icon {
-    width: 120px;
-    padding: 20px;
-    margin-left: -8%;
+      width: 120px;
+      padding: 20px;
+      margin-left: -8%;
   }
 
   .title {
-    color: #291911;
-    margin-top: 200px;
-    left: 100px;
-    font-size: 4rem;
-    font-family: "Abyssinica SIL";
+      color: #291911;
+      margin-top: 200px;
+      left: 100px;
+      font-size: 4rem;
+      font-family: 'Abyssinica SIL';
   }
 
   .desc {
-    color: #9d918b;
-    font-size: 20px;
-    margin-top: -20px;
+      color: #9D918B;
+      font-size: 20px;
+      margin-top: -20px;
   }
 
   .bookshelf {
-    background-size: cover;
-    background-position: left;
-    width: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding: 7rem;
-    margin-top: -80px;
+      background-size: cover;
+      background-position: left;
+      width: 100%;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding: 7rem;
+      margin-top: -80px;
   }
 
   .book-image {
-    width: 25%;
-    margin: 40px;
-    box-shadow: 0px 0px 10px 0px #5d5c5c;
+      width: 25%;
+      margin: 40px;
+      box-shadow: 0px 0px 10px 0px #5d5c5c;
   }
 
   .another-image {
-    width: 200px;
-    height: 300px;
-    border-radius: 10px;
-    margin-top: 10px;
-    padding: 4rem;
+      width: 200px;
+      height: 300px;
+      border-radius: 10px;
+      margin-top: 10px;
+      padding: 4rem;
   }
 }
