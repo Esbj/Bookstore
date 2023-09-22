@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Order } from '../../data/OrderInterface';
 import { Book } from '../../data/BookInterface';
+import "./Tables.scss";
 
 type TablesProps = {
   activeTab: string;
@@ -15,6 +16,22 @@ type TablesProps = {
 };
 
 function Tables({ activeTab, orders, books }: TablesProps) {
+  const [ordersState, setOrdersState] = useState<Order[]>(orders);
+
+  useEffect(() => {
+    setOrdersState(orders);
+  }, [orders]);
+
+  const handleStatusChange = (orderId: number | undefined, newStatus: string) => {
+    const updatedOrders = ordersState.map(order => {
+      if (order._id === orderId) {
+        return { ...order, status: newStatus };
+      }
+      return order;
+    });
+    setOrdersState(updatedOrders);
+  };
+
   return (
     <React.Fragment>
       {activeTab === 'Orders' && (
@@ -30,12 +47,22 @@ function Tables({ activeTab, orders, books }: TablesProps) {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {orders.map(order => (
+                {ordersState.map(order => (
                   <TableRow key={order._id}>
                     <TableCell>{order._id}</TableCell>
                     <TableCell>{order.firstName}</TableCell>
                     <TableCell>{order.email}</TableCell>
-                    <TableCell>{order.status}</TableCell>
+                    <TableCell>
+                      <select
+                        value={order.status}
+                        onChange={(e) => handleStatusChange(order._id, e.target.value)}
+                        className="status-select"
+                      >
+                        <option value="Cancelled">Cancelled</option>
+                        <option value="Processing">Processing</option>
+                        <option value="Sent">Sent</option>
+                      </select>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -49,7 +76,7 @@ function Tables({ activeTab, orders, books }: TablesProps) {
             <Table>
               <TableHead>
                 <TableRow>
-                <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7'}}>ISBN</TableCell>
+                  <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7'}}>ISBN</TableCell>
                   <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7'}}>Title</TableCell>
                   <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7'}}>Author</TableCell>
                   <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}>Price</TableCell>
@@ -65,8 +92,11 @@ function Tables({ activeTab, orders, books }: TablesProps) {
                   </TableRow>
                 ))}
               </TableBody>
+             
             </Table>
+            
           </TableContainer>
+          
         </div>
       )}
     </React.Fragment>
@@ -74,3 +104,5 @@ function Tables({ activeTab, orders, books }: TablesProps) {
 }
 
 export default Tables;
+
+
