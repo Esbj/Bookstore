@@ -3,6 +3,7 @@ import useFetch from "../customHooks/useFetch";
 import { useMemo } from "react";
 import BookCard from "../common/BookCard/BookCard";
 import { Book } from "../data/BookInterface";
+import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 
 export const Books = () => {
   const url = "http://localhost:3000/books"
@@ -15,10 +16,18 @@ export const Books = () => {
 
 
   return (
-    <div className="books-grid">
-      {books?.map((book: Book) => (
-        <BookCard book={book} />
+    <Grid container spacing={3}>
+      {books.map((book: Book) => (
+        <Grid xs={6} md={4}>
+          <BookCard book={book} />
+        </Grid>
       ))}
-    </div>
+    </Grid>
+
+    // <div className="books-wrapper">
+    //   {books?.map((book: Book) => (
+    //     <BookCard book={book} />
+    //   ))}
+    // </div>
   )
 };
