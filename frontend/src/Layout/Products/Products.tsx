@@ -19,7 +19,7 @@ export default function Products() {
 
                     <HeadingToggle selectedTab={selectedTab} updateSelectedTab={updateSelectedTab} />
                     {selectedTab === "Books" && <ProductBooks />}
-                    {/* <div style={{ padding: "2rem" }}>
+                    <div style={{ padding: "2rem" }}>
                 <Cart />
                 {MockedProducts.map((book) => (
                     <div key={book._id}>
@@ -31,7 +31,7 @@ export default function Products() {
                         <button onClick={() => addToCart(book)}>Add to cart</button>
                     </div>
                 ))}
-            </div> */}
+            </div>
                 </div>
             </div>
         </>
