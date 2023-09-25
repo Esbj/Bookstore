@@ -4,6 +4,12 @@ import { OrderContext } from "../OrderContext";
 import { PaymentMethod } from "../data/OrderInterface";
 import Button from "@mui/material/Button";
 import "../Layout/Checkout/CheckoutPages.scss";
+import {
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+} from "@mui/material";
 
 export default function Payment() {
   const { order, setPaymentMethod, shippingMethod } = useContext(OrderContext);
@@ -61,13 +67,14 @@ export default function Payment() {
     <>
       <form onSubmit={handleSubmit}>
         <div className="container">
-          <h4>Select payment option</h4>
-          <div className="paymentOptions">
-            <div>
+          <div className="paymentOptionContainer">
+            <h2 className="heading">Select payment option</h2>
+            <div className="paymentOption">
               <img
                 style={{ width: "5rem" }}
                 src="https://images.ctfassets.net/zrqoyh8r449h/5Kbx9XCa4oJjwgUP0RNDZY/176707fc098ba9c33a4cef9b039236f6/Swish_Logo_Primary_Light-BG_P3.png?w=600"
               />
+
               <input
                 type="radio"
                 name="paymentMethod"
@@ -84,28 +91,31 @@ export default function Payment() {
                   });
                 }}
               />
-              {payment?.paymentMethod.type === "swish" && (
+            </div>
+            {payment?.paymentMethod.type === "swish" && (
+              <div className="paymentDetails">
                 <input
                   className="inputField"
                   type="text"
                   value={newOrder.phoneNumber}
-                  placeholder={newOrder.phoneNumber}
+                  placeholder="Phone number"
                   onChange={(e) => {
                     const newPhoneNumber = e.target.value;
-                    setPayment({
+                    setPayment((prevState) => ({
                       paymentMethod: {
                         type: "swish",
                         details: {
+                          ...prevState?.paymentMethod.details,
                           phone: newPhoneNumber,
                         },
                       },
-                    });
+                    }));
                   }}
                 />
-              )}
-            </div>
+              </div>
+            )}
 
-            <div style={{ flexBasis: "1" }}>
+            <div className="paymentOption">
               <img
                 style={{ width: "5rem" }}
                 src="https://cdn.icon-icons.com/icons2/38/PNG/512/creditcard_payment_4578.png"
@@ -133,7 +143,7 @@ export default function Payment() {
             </div>
 
             {payment?.paymentMethod.type === "card" && (
-              <div className="cardDetails">
+              <div className="paymentDetails">
                 <input
                   className="inputField"
                   type="text"

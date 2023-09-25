@@ -23,7 +23,7 @@
     width: 100%;
     background-color: #F6EDE2;
     border-radius: 2rem;
-    border: 3px solid #ccc;
+    border: 0.1rem solid #ccc;  
 
     .deliveryOptionContainer{
       border-radius: 2rem; 
@@ -67,7 +67,7 @@
         font-size: medium;
         height: 3rem;
         width: 50%;
-        border: 1px solid #ccc;   
+        border: 0.1rem solid #ccc;    
         border-radius: 0.8rem;
     }
 }
@@ -86,12 +86,29 @@ hr {
     padding: 10rem;
     margin: 100vh;
   }
- .cardDetails{
+ .paymentDetails{
+  margin-top: 0.5rem;
   flex-direction: column;
   display: flex;
  }
- .paymentOptions{
+ .paymentOption{
+  margin-top: 1rem;
+  padding: 5rem;
   display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  border-radius: 2rem;
+  border: 0.1rem solid #ccc;  
+  
+ }
+ .paymentOptionContainer{
+  
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #ccc;
+  border-radius: 2rem;
+  padding: 5rem;
+  background-color: #F6EDE2;
  }
   .total{
     text-align: center
