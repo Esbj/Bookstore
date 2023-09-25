@@ -1,5 +1,5 @@
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import useFetchBooks from '../../customHooks/useFetchBooks';
 import useFetchBook from '../../customHooks/useFetchSingleBook';
 import Logo from '../Logo';
@@ -8,20 +8,17 @@ import { AddShoppingCart } from '@mui/icons-material';
 import "./SingleBook.scss"
 import { Book } from '../../data/BookInterface';
 import BookCard from '../BookCard/BookCard';
+import { useEffect } from 'react';
 
 export default function SingleBook() {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate(`/products/${id}`);
+    window.scrollTo(0, 0)
+  }, [id])
   const { book, author } = useFetchBook(`http://localhost:3000/books/${id}`)
-  console.log(book, author)
   const { data } = useFetchBooks(`http://localhost:3000/author/${id}`)
-  console.log(id)
-  console.log(data)
-  // return (
-  //   <>
-  //     {id}
-  //     {book?.title}
-  //   </>
-  // )
   const books = data as Book[]
   return (
     <main>
@@ -39,12 +36,22 @@ export default function SingleBook() {
           <Typography variant='body1'>{book?.description}</Typography>
         </div>
       </div>
-      <div className="moreBooks">
-        <Divider><Typography variant='h4'>More titles by {author?.name}</Typography></Divider>
-        <div className="booksByAuthor">
-          {books?.map(book => <BookCard book={book} />)}
+      {books?.length > 1 &&
+        <div className="moreBooks">
+          <Divider><Typography variant='h4'>More titles by {author?.name}</Typography></Divider>
+          <div className="booksByAuthor">
+            {books?.map((book, index) => (
+              <div key={index}>
+                {
+                  book._id !== id ?
+                    <BookCard book={book} />
+                    : ''
+                }
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      }
     </main>
   )
 }

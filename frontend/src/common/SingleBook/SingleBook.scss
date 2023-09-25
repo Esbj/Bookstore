@@ -1,4 +1,5 @@
 main {
+  border-radius: 3rem;
   width: 70%;
   background-color: #f7f3ee;
   margin: 3rem auto;
@@ -28,6 +29,10 @@ main {
       display: flex;
       flex: 1;
       gap: 3rem;
+      justify-content: center;
+      .book-card {
+        width: 350px;
+      }
     }
   }
 }
