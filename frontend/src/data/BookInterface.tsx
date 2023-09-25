@@ -7,6 +7,13 @@ export interface Book {
   isbn: string,
   imageUrl: string
 }
+
+export interface Author {
+  _id: string,
+  name: string,
+  books: Book[]
+}
+
 export interface CartProduct extends Book {
   quantity: number,
 }

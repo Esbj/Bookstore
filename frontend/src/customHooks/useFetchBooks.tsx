@@ -1,4 +1,4 @@
-import { useEffect as useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Book } from '../data/BookInterface'
 import { Order } from '../data/OrderInterface'
 

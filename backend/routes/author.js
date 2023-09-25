@@ -10,12 +10,12 @@ authorRouter.get('/', async (req, res) => {
 });
 
 
-authorRouter.get('/:id/books', async (req, res) => {
+authorRouter.get('/:bookId/', async (req, res) => {
   try {
-    const id = req.params.id;
-    const author = await authorModel.findById(id)
-    const books = await bookModel.find({ author: author.name });
-    res.json(books)
+    const bookId = req.params.bookId;
+    const book = await bookModel.findById(bookId)
+    const booksByAuthor = await bookModel.find({ author: book.author })
+    res.json(booksByAuthor)
   }
   catch (error) {
     console.error(error)
