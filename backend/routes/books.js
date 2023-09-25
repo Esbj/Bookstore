@@ -12,16 +12,15 @@ booksRouter.get("/:id", async (req, res) => {
     try {
         const bookId = req.params.id;
         const book = await bookModel.findById(bookId);
-
         if (!book) {
             return res.status(404).json({ message: "Book not found" });
         }
 
-        const authorId = book.author;
-        const author = await authorModel.findOne({ name: authorName });
+        const authorNane = book.author;
+        const author = await authorModel.findOne({ name: authorNane })
 
         if (!author) {
-            return res.status(404).json({ message: "Author not found" });
+            return res.status(500).json({ message: `Error: No author for book with id: ${book.id}` });
         }
 
         res.json({ book, author });
