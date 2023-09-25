@@ -23,11 +23,5 @@ export const Books = () => {
         </Grid>
       ))}
     </Grid>
-
-    // <div className="books-wrapper">
-    //   {books?.map((book: Book) => (
-    //     <BookCard book={book} />
-    //   ))}
-    // </div>
   )
 };
