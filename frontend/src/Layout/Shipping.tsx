@@ -169,7 +169,7 @@ export default function Shipping() {
                 [e.target.value]: {
                   cost: 3,
                   shippingTime,
-                  expectedDelivery: expectedDelivery.toISOString(),
+                  expectedDelivery: expectedDelivery.toLocaleString(),
                 },
               });
             }}
@@ -194,7 +194,7 @@ export default function Shipping() {
                 [e.target.value]: {
                   cost: 6,
                   shippingTime,
-                  expectedDelivery: expectedDelivery.toISOString(),
+                  expectedDelivery: expectedDelivery.toLocaleString(),
                 },
               });
             }}
@@ -219,7 +219,7 @@ export default function Shipping() {
                 [e.target.value]: {
                   cost: 9,
                   shippingTime,
-                  expectedDelivery: expectedDelivery.toISOString(),
+                  expectedDelivery: expectedDelivery.toLocaleString(),
                 },
               });
             }}

@@ -1,13 +1,20 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { OrderContext } from "../OrderContext";
 import { PaymentMethod } from "../data/OrderInterface";
 
 export default function Payment() {
   const { order, setPaymentMethod, shippingMethod } = useContext(OrderContext);
   const newOrder = order[order.length - 1];
+  const [orderId, setOrderId] = useState("");
+  const navigate = useNavigate();
 
   const [payment, setPayment] = useState<PaymentMethod | null>(null);
-
+  useEffect(() => {
+    if (order.length > 0 && payment?.paymentMethod.type && orderId) {
+      navigate("/ordercompleted/" + orderId);
+    }
+  }, [order, payment, orderId, navigate]);
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -40,6 +47,11 @@ export default function Payment() {
     } else {
       const responseData = await response.json();
       console.log("Order posted successfully", responseData);
+
+      const orderId = responseData._id;
+      console.log("the ID:" + orderId);
+
+      setOrderId(orderId);
     }
   };
 

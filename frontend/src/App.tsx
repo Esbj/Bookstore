@@ -4,6 +4,7 @@ import Products from "./Layout/Products/Products";
 import Shipping from "./Layout/Shipping";
 import AdminPage from "./Layout/AdminPage/AdminPage";
 import Payment from "./Layout/Payment";
+import CompletedOrderPage from "./Layout/Checkout/CompletedOrderPage";
 function App() {
   return (
     <>
@@ -12,6 +13,11 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/shipping" element={<Shipping />} />
         <Route path="/payment" element={<Payment />} />
+        <Route
+          path="/ordercompleted/:orderId"
+          element={<CompletedOrderPage />}
+        />
+
         <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </>
