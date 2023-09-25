@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { OrderContext } from "../OrderContext";
 import { PaymentMethod } from "../data/OrderInterface";
+import Button from "@mui/material/Button";
+import "../Layout/Checkout/CheckoutPages.scss";
 
 export default function Payment() {
   const { order, setPaymentMethod, shippingMethod } = useContext(OrderContext);
@@ -57,86 +59,83 @@ export default function Payment() {
 
   return (
     <>
-      <h4>Your Total</h4>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-        }}
-      >
-        <div>{newOrder?.totalPriceWithShipping}</div>
-        <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
+        <div className="container">
           <h4>Select payment option</h4>
-          <div style={{ flexBasis: "1" }}>
-            <img
-              style={{ width: "5rem" }}
-              src="https://images.ctfassets.net/zrqoyh8r449h/5Kbx9XCa4oJjwgUP0RNDZY/176707fc098ba9c33a4cef9b039236f6/Swish_Logo_Primary_Light-BG_P3.png?w=600"
-            />
-            <input
-              type="radio"
-              name="paymentMethod"
-              value="swish"
-              checked={payment?.paymentMethod.type === "swish"}
-              onChange={() => {
-                setPayment({
-                  paymentMethod: {
-                    type: "swish",
-                    details: {
-                      phone: newOrder.phoneNumber,
-                    },
-                  },
-                });
-              }}
-            />
-            {payment?.paymentMethod.type === "swish" && (
+          <div className="paymentOptions">
+            <div>
+              <img
+                style={{ width: "5rem" }}
+                src="https://images.ctfassets.net/zrqoyh8r449h/5Kbx9XCa4oJjwgUP0RNDZY/176707fc098ba9c33a4cef9b039236f6/Swish_Logo_Primary_Light-BG_P3.png?w=600"
+              />
               <input
-                type="text"
-                value={newOrder.phoneNumber}
-                placeholder={newOrder.phoneNumber}
-                onChange={(e) => {
-                  const newPhoneNumber = e.target.value;
+                type="radio"
+                name="paymentMethod"
+                value="swish"
+                checked={payment?.paymentMethod.type === "swish"}
+                onChange={() => {
                   setPayment({
                     paymentMethod: {
                       type: "swish",
                       details: {
-                        phone: newPhoneNumber,
+                        phone: newOrder.phoneNumber,
                       },
                     },
                   });
                 }}
               />
-            )}
-          </div>
+              {payment?.paymentMethod.type === "swish" && (
+                <input
+                  className="inputField"
+                  type="text"
+                  value={newOrder.phoneNumber}
+                  placeholder={newOrder.phoneNumber}
+                  onChange={(e) => {
+                    const newPhoneNumber = e.target.value;
+                    setPayment({
+                      paymentMethod: {
+                        type: "swish",
+                        details: {
+                          phone: newPhoneNumber,
+                        },
+                      },
+                    });
+                  }}
+                />
+              )}
+            </div>
 
-          <div style={{ flexBasis: "1" }}>
-            <img
-              style={{ width: "5rem" }}
-              src="https://cdn.icon-icons.com/icons2/38/PNG/512/creditcard_payment_4578.png"
-            />
-            <input
-              type="radio"
-              name="paymentMethod"
-              value="card"
-              checked={payment?.paymentMethod.type === "card"}
-              onChange={() => {
-                setPayment({
-                  paymentMethod: {
-                    type: "card",
-                    details: {
-                      name: "",
-                      cardNumber: "",
-                      CVC: "",
-                      phone: "",
+            <div style={{ flexBasis: "1" }}>
+              <img
+                style={{ width: "5rem" }}
+                src="https://cdn.icon-icons.com/icons2/38/PNG/512/creditcard_payment_4578.png"
+              />
+              <input
+                className="inputField"
+                type="radio"
+                name="paymentMethod"
+                value="card"
+                checked={payment?.paymentMethod.type === "card"}
+                onChange={() => {
+                  setPayment({
+                    paymentMethod: {
+                      type: "card",
+                      details: {
+                        name: "",
+                        cardNumber: "",
+                        CVC: "",
+                        phone: "",
+                      },
                     },
-                  },
-                });
-              }}
-            />
+                  });
+                }}
+              />
+            </div>
 
             {payment?.paymentMethod.type === "card" && (
-              <>
+              <div className="cardDetails">
                 <input
+                  className="inputField"
                   type="text"
                   name="name"
                   placeholder="Name on card"
@@ -154,6 +153,7 @@ export default function Payment() {
                   }}
                 />
                 <input
+                  className="inputField"
                   type="text"
                   name="cardNumber"
                   placeholder="Card number"
@@ -171,6 +171,7 @@ export default function Payment() {
                   }}
                 />
                 <input
+                  className="inputField"
                   type="text"
                   name="CVC"
                   placeholder="CVC"
@@ -188,6 +189,7 @@ export default function Payment() {
                   }}
                 />
                 <input
+                  className="inputField"
                   type="text"
                   name="phone"
                   placeholder="Phone number"
@@ -204,12 +206,18 @@ export default function Payment() {
                     }));
                   }}
                 />
-              </>
+              </div>
             )}
           </div>
-          <button type="submit">Complete your order</button>
-        </form>
-      </div>
+          <div className="total">
+            <h2 className="heading">Your Total</h2>
+            <div>{newOrder?.totalPriceWithShipping}</div>
+          </div>
+          <Button variant="contained" type="submit">
+            Complete your order
+          </Button>
+        </div>
+      </form>
     </>
   );
 }

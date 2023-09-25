@@ -4,10 +4,95 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #F3E5D0;
+    margin: 10;
+    
+    
 }
 
 .heading {
     text-align: center;
     margin-bottom: 20px;
 }
+
+.formContainer{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    background-color: #F6EDE2;
+    border-radius: 2rem;
+    border: 3px solid #ccc;
+
+    .deliveryOptionContainer{
+      border-radius: 2rem; 
+      flex-direction: column;
+      display: flex;
+      text-align: center;
+    }
+    .deliveryOption {
+      text-align: center;
+      display: flex;
+      align-items: center;
+       
+    }
+    .deliveryIcon{
+      
+      height: auto; 
+      margin-left: 1rem;
+      width: 6rem;
+      border-radius: 2rem;
+    }
+    .deliveryText {
+      
+      flex: 1; 
+      display: flex;
+      width: 100%;
+      margin-right: auto;
+      flex-direction: column; 
+    }
+    
+    .deliveryCost {
+      display: flex;
+      flex-direction: row; 
+      align-items: flex-end; 
+      
+      margin-right: auto;
+    }
+    .inputField{
+        text-align: center;
+        margin-top: 0.5rem;
+        flex-basis: 1;
+        font-size: medium;
+        height: 3rem;
+        width: 50%;
+        border: 1px solid #ccc;   
+        border-radius: 0.8rem;
+    }
+}
+hr {
+    border: 0; 
+    height: 1px; 
+    background-color: #ccc; 
+    margin: 10px 0; 
+    
+    
+  }
+
+  Button{
+    background-color: #FFFFFF;
+    width: 50%;
+    padding: 10rem;
+    margin: 100vh;
+  }
+ .cardDetails{
+  flex-direction: column;
+  display: flex;
+ }
+ .paymentOptions{
+  display: flex;
+ }
+  .total{
+    text-align: center
+  }

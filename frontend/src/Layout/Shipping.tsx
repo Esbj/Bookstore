@@ -4,6 +4,15 @@ import { CartContext } from "../CartContext";
 import { Order, ShippingMethod } from "../data/OrderInterface";
 import { useNavigate } from "react-router-dom";
 import { OrderContext } from "../OrderContext";
+import "../Layout/Checkout/CheckoutPages.scss";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import {
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+} from "@mui/material";
 
 export default function Shipping() {
   const { cart, totalPrice } = useContext(CartContext);
@@ -82,169 +91,245 @@ export default function Shipping() {
     setShippingMethod([...shippingMethod, selectedShippingMethod]);
   };
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "20rem",
-        justifyContent: "center",
-        textAlign: "center",
-      }}
-    >
-      <div>
-        <h4>Delivery Address</h4>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Street Address"
-            value={address.streetAddress}
-            onChange={(e) =>
-              setAddress((prev) => ({
-                ...prev,
-                streetAddress: e.target.value,
-              }))
-            }
-          />
-          <input
-            type="text"
-            placeholder="Postal Code"
-            value={address.zip}
-            onChange={(e) =>
-              setAddress((prev) => ({
-                ...prev,
-                zip: e.target.value,
-              }))
-            }
-          />
-          <input
-            type="text"
-            placeholder="City"
-            value={address.city}
-            onChange={(e) =>
-              setAddress((prev) => ({
-                ...prev,
-                city: e.target.value,
-              }))
-            }
-          />
-          <input
-            type="text"
-            placeholder="Phone"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
+    <CssBaseline>
+      <form onSubmit={handleSubmit}>
+        <div className="container">
+          <div className="formContainer">
+            <h2 className="heading">Delivery Address</h2>
+            <input
+              className="inputField"
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              className="inputField"
+              type="text"
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <input
+              className="inputField"
+              type="text"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+            <input
+              className="inputField"
+              type="text"
+              placeholder="Street Address"
+              value={address.streetAddress}
+              onChange={(e) =>
+                setAddress((prev) => ({
+                  ...prev,
+                  streetAddress: e.target.value,
+                }))
+              }
+            />
+            <input
+              className="inputField"
+              type="text"
+              placeholder="Postal Code"
+              value={address.zip}
+              onChange={(e) =>
+                setAddress((prev) => ({
+                  ...prev,
+                  zip: e.target.value,
+                }))
+              }
+            />
+            <input
+              className="inputField"
+              type="text"
+              placeholder="City"
+              value={address.city}
+              onChange={(e) =>
+                setAddress((prev) => ({
+                  ...prev,
+                  city: e.target.value,
+                }))
+              }
+            />
+            <input
+              className="inputField"
+              type="text"
+              placeholder="Phone"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+            <hr />
+            <div className="deliveryOptionContainer">
+              <h2 className="heading">Delivery Options</h2>
 
-          <h4>Delivery Options</h4>
+              <label className="deliveryOption">
+                <FormControl component="fieldset">
+                  <RadioGroup
+                    name="deliveryOption"
+                    value={Object.keys(shipping)[0] || ""}
+                    onChange={(e) => {
+                      const shippingTime = 4;
+                      const currentDate = new Date();
+                      const expectedDelivery = new Date(
+                        currentDate.setDate(
+                          currentDate.getDate() + shippingTime
+                        )
+                      );
+                      setShipping({
+                        [e.target.value]: {
+                          cost: 3,
+                          shippingTime,
+                          expectedDelivery: expectedDelivery.toLocaleString(),
+                        },
+                      });
+                    }}
+                  >
+                    <FormControlLabel
+                      value="Method1"
+                      control={<Radio />}
+                      label=""
+                    />
+                  </RadioGroup>
+                </FormControl>
+                <div className="deliveryText">
+                  <h3>Delivery to parcel locker</h3>
+                  <p>Shipping time: {shipping["Method1"]?.shippingTime} days</p>
+                  <p>
+                    Expected delivery: {shipping["Method1"]?.expectedDelivery}
+                  </p>
+                </div>
+                <div className="deliveryCost">
+                  <h3>3$</h3>
+                  <img
+                    className="deliveryIcon"
+                    src="https://s3-eu-west-1.amazonaws.com/tpd/logos/5dee1c1af8ee0e0001ad5cad/0x0.png"
+                    alt="Delivery Company"
+                  />
+                </div>
+              </label>
+              <hr />
 
-          <input
-            type="radio"
-            name="deliveryOption"
-            value="Method1"
-            checked={shipping["Method1"] !== undefined}
-            onChange={(e) => {
-              const shippingTime = 5;
-              const currentDate = new Date();
-              const expectedDelivery = new Date(
-                currentDate.setDate(currentDate.getDate() + shippingTime)
-              );
-              setShipping({
-                [e.target.value]: {
-                  cost: 3,
-                  shippingTime,
-                  expectedDelivery: expectedDelivery.toLocaleString(),
-                },
-              });
-            }}
-          />
-          <p>Delivery to parcel locker</p>
-          <p>3$</p>
-          <p>Shipping time: {shipping["Method1"]?.shippingTime} days</p>
-          <p>Expected delivery: {shipping["Method1"]?.expectedDelivery}</p>
-          <hr />
-          <input
-            type="radio"
-            name="deliveryOption"
-            value="Method2"
-            checked={shipping["Method2"] !== undefined}
-            onChange={(e) => {
-              const shippingTime = 2;
-              const currentDate = new Date();
-              const expectedDelivery = new Date(
-                currentDate.setDate(currentDate.getDate() + shippingTime)
-              );
-              setShipping({
-                [e.target.value]: {
-                  cost: 6,
-                  shippingTime,
-                  expectedDelivery: expectedDelivery.toLocaleString(),
-                },
-              });
-            }}
-          />
-          <p>Delivery to home address</p>
-          <p>6$</p>
-          <p>Shipping time: {shipping["Method2"]?.shippingTime} days</p>
-          <p>Expected delivery: {shipping["Method2"]?.expectedDelivery}</p>
-          <hr />
-          <input
-            type="radio"
-            name="deliveryOption"
-            value="Method3"
-            checked={shipping["Method3"] !== undefined}
-            onChange={(e) => {
-              const shippingTime = 1;
-              const currentDate = new Date();
-              const expectedDelivery = new Date(
-                currentDate.setDate(currentDate.getDate() + shippingTime)
-              );
-              setShipping({
-                [e.target.value]: {
-                  cost: 9,
-                  shippingTime,
-                  expectedDelivery: expectedDelivery.toLocaleString(),
-                },
-              });
-            }}
-          />
-          <p>Delivery to office address</p>
-          <p>9$</p>
-          <p>Shipping time: {shipping["Method3"]?.shippingTime} days</p>
-          <p>Expected delivery: {shipping["Method3"]?.expectedDelivery}</p>
-          <hr />
-          <div>
-            <p>Subtotal: {totalPrice()}</p>
-            <p>
-              Shipping:{" "}
-              {Object.values(shipping)[0]?.cost || "No delivery selected"}
-            </p>
-
-            {Object.values(shipping).length > 0 ? (
+              <label className="deliveryOption">
+                <FormControl component="fieldset">
+                  <RadioGroup
+                    name="deliveryOption"
+                    value={Object.keys(shipping)[0] || ""}
+                    onChange={(e) => {
+                      const shippingTime = 2;
+                      const currentDate = new Date();
+                      const expectedDelivery = new Date(
+                        currentDate.setDate(
+                          currentDate.getDate() + shippingTime
+                        )
+                      );
+                      setShipping({
+                        [e.target.value]: {
+                          cost: 6,
+                          shippingTime,
+                          expectedDelivery: expectedDelivery.toLocaleString(),
+                        },
+                      });
+                    }}
+                  >
+                    <FormControlLabel
+                      value="Method2"
+                      control={<Radio />}
+                      label=""
+                    />
+                  </RadioGroup>
+                </FormControl>
+                <div className="deliveryText">
+                  <h3>Delivery to home address</h3>
+                  <p>Shipping time: {shipping["Method2"]?.shippingTime} days</p>
+                  <p>
+                    Expected delivery: {shipping["Method2"]?.expectedDelivery}
+                  </p>
+                </div>
+                <div className="deliveryCost">
+                  <h3>6$</h3>
+                  <img
+                    className="deliveryIcon"
+                    src="https://logo.clearbit.com/airmee.com?size=100"
+                    alt="Delivery Company"
+                  />
+                </div>
+              </label>
+              <hr />
+              <label className="deliveryOption">
+                <FormControl component="fieldset">
+                  <RadioGroup
+                    name="deliveryOption"
+                    value={Object.keys(shipping)[0] || ""}
+                    onChange={(e) => {
+                      const shippingTime = 1;
+                      const currentDate = new Date();
+                      const expectedDelivery = new Date(
+                        currentDate.setDate(
+                          currentDate.getDate() + shippingTime
+                        )
+                      );
+                      setShipping({
+                        [e.target.value]: {
+                          cost: 9,
+                          shippingTime,
+                          expectedDelivery: expectedDelivery.toLocaleString(),
+                        },
+                      });
+                    }}
+                  >
+                    <FormControlLabel
+                      value="Method3"
+                      control={<Radio />}
+                      label=""
+                    />
+                  </RadioGroup>
+                </FormControl>
+                <div className="deliveryText">
+                  <h3>Delivery to office address</h3>
+                  <p>Shipping time: {shipping["Method3"]?.shippingTime} day</p>
+                  <p>
+                    Expected delivery: {shipping["Method3"]?.expectedDelivery}
+                  </p>
+                </div>
+                <div className="deliveryCost">
+                  <h3>9$</h3>
+                  <img
+                    className="deliveryIcon"
+                    src="https://cdn.imgbin.com/3/1/4/imgbin-logo-deutsche-bahn-db-cargo-db-schenker-rail-db-kommunikationstechnik-gmbh-partners-AH4Xq5G4eszRuHrXe5AiTgQfx.jpg"
+                    alt=""
+                  />
+                </div>
+              </label>
+            </div>
+            <hr />
+            <div>
+              <p>Subtotal: {totalPrice()}</p>
               <p>
-                Total: {totalPrice() + (Object.values(shipping)[0]?.cost || 0)}
+                Shipping:{" "}
+                {Object.values(shipping)[0]?.cost || "No delivery selected"}
               </p>
-            ) : null}
+
+              {Object.values(shipping).length > 0 ? (
+                <p>
+                  Total:{" "}
+                  {totalPrice() + (Object.values(shipping)[0]?.cost || 0)}
+                </p>
+              ) : null}
+            </div>
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{
+                margin: "2rem",
+              }}
+            >
+              Payment
+            </Button>
           </div>
-          <button type="submit">Payment</button>
-        </form>
-      </div>
-    </div>
+        </div>
+      </form>
+    </CssBaseline>
   );
 }
