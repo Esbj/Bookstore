@@ -16,7 +16,7 @@ export default function SingleBook() {
   useEffect(() => {
     navigate(`/products/${id}`);
     window.scrollTo(0, 0)
-  }, [id])
+  }, [id, navigate])
   const { book, author } = useFetchBook(`http://localhost:3000/books/${id}`)
   const { data } = useFetchBooks(`http://localhost:3000/author/${id}`)
   const books = data as Book[]
