@@ -8,6 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import { Order } from '../../data/OrderInterface';
 import { Book } from '../../data/BookInterface';
 import "./Tables.scss";
+import { Link } from 'react-router-dom';
+
 
 type TablesProps = {
   activeTab: string;
@@ -92,11 +94,14 @@ function Tables({ activeTab, orders, books }: TablesProps) {
                   </TableRow>
                 ))}
               </TableBody>
-             
             </Table>
-            
           </TableContainer>
-          
+
+          <div className="add-book-button">
+            <Link to="/add-book">Add a new book</Link>
+          </div>
+        
+        
         </div>
       )}
     </React.Fragment>
@@ -104,5 +109,3 @@ function Tables({ activeTab, orders, books }: TablesProps) {
 }
 
 export default Tables;
-
-

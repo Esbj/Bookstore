@@ -33,8 +33,8 @@ booksRouter.get("/:id", async (req, res) => {
 
 booksRouter.post("/", async (req, res) => {
     const newBook = req.body;
-    const existingBooks = await bookModel.find({})
-    if (!existingBooks.filter((book) => newBook.isbn === book.isbn)) {
+    const existingBook = await bookModel.findOne({isbn: newBook.isbn})
+    if (!existingBook) {
         const addedBook = await bookModel.create(newBook);
         const author = await authorModel.findOne({ name: newBook.author });
         if (!author) {
@@ -52,6 +52,9 @@ booksRouter.post("/", async (req, res) => {
         res.status(409).send("Book already exists")
     }
 
+
+
+    
 });
 
 booksRouter.delete("/", async (req, res) => {
