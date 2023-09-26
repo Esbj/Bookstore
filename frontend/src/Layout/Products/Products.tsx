@@ -4,6 +4,8 @@ import { Books } from "../Books/Books";
 import "./Products.scss"
 import homeLogo from '../../assets/books-logo.svg'
 import { Link } from "react-router-dom";
+import Authors from "../Authors/Authors";
+
 
 export default function Products() {
   const [selectedTab, setSelectedTab] = useState('Books');
@@ -13,7 +15,7 @@ export default function Products() {
       <Link to={"/"}><img className="logo" src={homeLogo} alt="" /></Link>
       <HeadingToggle selectedTab={selectedTab} updateSelectedTab={updateSelectedTab} />
       {selectedTab === "Books" && <Books />}
-      {/* {selectedTab === "Authors" && <Authors />} */}
+      {selectedTab === "Authors" && <Authors />}
     </div>
   )
 }

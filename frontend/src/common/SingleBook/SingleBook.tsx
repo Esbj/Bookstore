@@ -1,6 +1,6 @@
 
 import { useParams, useNavigate } from 'react-router-dom';
-import useFetchBooks from '../../customHooks/useFetchBooks';
+import useFetch from '../../customHooks/useFetch';
 import useFetchBook from '../../customHooks/useFetchSingleBook';
 import Logo from '../Logo';
 import { Typography, Button, Divider } from '@mui/material';
@@ -18,7 +18,7 @@ export default function SingleBook() {
     window.scrollTo(0, 0)
   }, [id, navigate])
   const { book, author } = useFetchBook(`http://localhost:3000/books/${id}`)
-  const { data } = useFetchBooks(`http://localhost:3000/author/${id}`)
+  const { data } = useFetch(`http://localhost:3000/author/${id}`)
   const books = data as Book[]
   return (
     <main>
