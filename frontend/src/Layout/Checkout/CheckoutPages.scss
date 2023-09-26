@@ -12,7 +12,9 @@
 
 .heading {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .formContainer{
@@ -43,7 +45,7 @@
       height: auto; 
       margin-left: 1rem;
       width: 6rem;
-      border-radius: 6rem;
+      border-radius: 12rem;
     }
     .deliveryText {
       
@@ -120,5 +122,9 @@ hr {
  }
  .total{
    text-align: center
+ }
+ .paymentIcon{
+  width: 5rem;
+  padding-bottom: 1rem;
  }
  }

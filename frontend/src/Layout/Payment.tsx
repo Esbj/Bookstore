@@ -4,6 +4,7 @@ import { OrderContext } from "../OrderContext";
 import { PaymentMethod } from "../data/OrderInterface";
 import Button from "@mui/material/Button";
 import "../Layout/Checkout/CheckoutPages.scss";
+import Typography from "@mui/material/Typography";
 
 export default function Payment() {
   const { order, setPaymentMethod, shippingMethod } = useContext(OrderContext);
@@ -62,10 +63,24 @@ export default function Payment() {
       <form onSubmit={handleSubmit}>
         <div className="container">
           <div className="paymentOptionContainer">
-            <h2 className="heading">Select payment option</h2>
-            <div className="paymentOption">
+            <Typography variant="h4" className="heading">
+              Select payment option
+            </Typography>
+            <div
+              onClick={() => {
+                setPayment({
+                  paymentMethod: {
+                    type: "swish",
+                    details: {
+                      phone: newOrder.phoneNumber,
+                    },
+                  },
+                });
+              }}
+              className="paymentOption"
+            >
               <img
-                style={{ width: "5rem" }}
+                className="paymentIcon"
                 src="https://images.ctfassets.net/zrqoyh8r449h/5Kbx9XCa4oJjwgUP0RNDZY/176707fc098ba9c33a4cef9b039236f6/Swish_Logo_Primary_Light-BG_P3.png?w=600"
               />
 
@@ -90,6 +105,7 @@ export default function Payment() {
             {payment?.paymentMethod.type === "swish" && (
               <div className="paymentDetails">
                 <input
+                  required
                   className="inputFieldPayment"
                   type="text"
                   value={newOrder.phoneNumber}
@@ -110,9 +126,24 @@ export default function Payment() {
               </div>
             )}
 
-            <div className="paymentOption">
+            <div
+              onClick={() => {
+                setPayment({
+                  paymentMethod: {
+                    type: "card",
+                    details: {
+                      name: "",
+                      cardNumber: "",
+                      CVC: "",
+                      phone: "",
+                    },
+                  },
+                });
+              }}
+              className="paymentOption"
+            >
               <img
-                style={{ width: "5rem" }}
+                className="paymentIcon"
                 src="https://cdn.icon-icons.com/icons2/38/PNG/512/creditcard_payment_4578.png"
               />
               <input
@@ -140,6 +171,7 @@ export default function Payment() {
             {payment?.paymentMethod.type === "card" && (
               <div className="paymentDetails">
                 <input
+                  required
                   className="inputFieldPayment"
                   type="text"
                   name="name"
@@ -158,6 +190,7 @@ export default function Payment() {
                   }}
                 />
                 <input
+                  required
                   className="inputFieldPayment"
                   type="text"
                   name="cardNumber"
@@ -176,6 +209,7 @@ export default function Payment() {
                   }}
                 />
                 <input
+                  required
                   className="inputFieldPayment"
                   type="text"
                   name="CVC"
@@ -194,6 +228,7 @@ export default function Payment() {
                   }}
                 />
                 <input
+                  required
                   className="inputFieldPayment"
                   type="text"
                   name="phone"
@@ -214,8 +249,12 @@ export default function Payment() {
               </div>
             )}
             <div className="total">
-              <h2 className="heading">Your Total</h2>
-              <h2>{newOrder?.totalPriceWithShipping}$</h2>
+              <Typography variant="h4" className="heading">
+                Your Total
+              </Typography>
+              <Typography variant="h4">
+                {newOrder?.totalPriceWithShipping}$
+              </Typography>
             </div>
             <Button variant="contained" type="submit">
               Complete your order

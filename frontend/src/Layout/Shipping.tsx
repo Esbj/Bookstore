@@ -12,6 +12,7 @@ import {
   RadioGroup,
   FormControlLabel,
   FormControl,
+  Typography,
 } from "@mui/material";
 
 export default function Shipping() {
@@ -95,8 +96,11 @@ export default function Shipping() {
       <form onSubmit={handleSubmit}>
         <div className="container">
           <div className="formContainer">
-            <h2 className="heading">Delivery Address</h2>
+            <Typography variant="h4" className="heading">
+              Delivery Address
+            </Typography>
             <input
+              required
               className="inputField"
               type="text"
               placeholder="Email"
@@ -104,6 +108,7 @@ export default function Shipping() {
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
+              required
               className="inputField"
               type="text"
               placeholder="First Name"
@@ -111,6 +116,7 @@ export default function Shipping() {
               onChange={(e) => setFirstName(e.target.value)}
             />
             <input
+              required
               className="inputField"
               type="text"
               placeholder="Last Name"
@@ -118,6 +124,7 @@ export default function Shipping() {
               onChange={(e) => setLastName(e.target.value)}
             />
             <input
+              required
               className="inputField"
               type="text"
               placeholder="Street Address"
@@ -130,6 +137,7 @@ export default function Shipping() {
               }
             />
             <input
+              required
               className="inputField"
               type="text"
               placeholder="Postal Code"
@@ -142,6 +150,7 @@ export default function Shipping() {
               }
             />
             <input
+              required
               className="inputField"
               type="text"
               placeholder="City"
@@ -154,6 +163,7 @@ export default function Shipping() {
               }
             />
             <input
+              required
               className="inputField"
               type="text"
               placeholder="Phone"
@@ -162,7 +172,9 @@ export default function Shipping() {
             />
             <hr />
             <div className="deliveryOptionContainer">
-              <h2 className="heading">Delivery Options</h2>
+              <Typography variant="h4" className="heading">
+                Delivery Options
+              </Typography>
 
               <label className="deliveryOption">
                 <FormControl component="fieldset">
@@ -297,7 +309,7 @@ export default function Shipping() {
                   <h3>9$</h3>
                   <img
                     className="deliveryIcon"
-                    src="https://cdn.imgbin.com/3/1/4/imgbin-logo-deutsche-bahn-db-cargo-db-schenker-rail-db-kommunikationstechnik-gmbh-partners-AH4Xq5G4eszRuHrXe5AiTgQfx.jpg"
+                    src="https://banner2.cleanpng.com/20180803/wwb/kisspng-logo-deutsche-bahn-db-cargo-db-schenker-rail-db-ko-our-partners-5b64b648588982.7212028215333269203627.jpg"
                     alt=""
                   />
                 </div>
