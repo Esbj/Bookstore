@@ -10,17 +10,18 @@ authorRouter.get('/', async (req, res) => {
 });
 
 
-authorRouter.get('/:bookId/', async (req, res) => {
+//get books published by an author
+authorRouter.get("/:id/books", async (req, res) => {
   try {
-    const bookId = req.params.bookId;
-    const book = await bookModel.findById(bookId)
-    const booksByAuthor = await bookModel.find({ author: book.author })
-    res.json(booksByAuthor)
-  }
-  catch (error) {
-    console.error(error)
-    res.status(500).json({ message: `Error: ${error}` })
-  }
-});
 
+    const authorId = req.params.id
+    const foundAuthor = await authorModel.findById(authorId);
+    console.log(foundAuthor)
+    const books = await bookModel.find({ author: foundAuthor.name })
+    console.log(books)
+    res.json(books)
+  } catch (error) {
+    res.json({ "message": error.message })
+  }
+})
 module.exports = authorRouter;
