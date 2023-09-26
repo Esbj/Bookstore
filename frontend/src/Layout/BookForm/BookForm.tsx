@@ -138,19 +138,18 @@ const AddBookPage: React.FC = () => {
                 fullWidth
               />
             </Grid>
+            <div className="grid-action-buttons">
 
-            <Grid item xs={6}>
               <Link to="/admin">
                 <Button variant="contained" color="secondary">
                   Cancel
                 </Button>
               </Link>
-            </Grid>
-            <Grid item xs={6}>
+
               <Button type="submit" variant="contained" color="primary">
                 Save
               </Button>
-            </Grid>
+            </div>
           </Grid>
         </form>
         <Snackbar open={!!successMessage} autoHideDuration={3000} onClose={() => setSuccessMessage("")}>
