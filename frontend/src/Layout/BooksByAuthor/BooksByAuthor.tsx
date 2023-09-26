@@ -24,9 +24,9 @@ export default function BooksByAuthor() {
     <div className="booksByAuthorWrapper">
       <Logo />
       <Typography variant="h3">{author}</Typography>
-      <Grid xs={12} md={6} container >
+      <Grid spacing={4} container >
         {books?.map((book, index) => (
-          <Grid key={index}>
+          <Grid xs={12} md={3} key={index}>
             <BookCard book={book} />
           </Grid>
         ))}

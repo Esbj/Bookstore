@@ -18,7 +18,7 @@ export const Books = () => {
   return (
     <Grid container spacing={3}>
       {books.map((book: Book) => (
-        <Grid xs={6} md={4}>
+        <Grid xs={12} md={4}>
           <BookCard book={book} />
         </Grid>
       ))}
