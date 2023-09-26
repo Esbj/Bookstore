@@ -81,5 +81,15 @@ Content-Type: application/json
 
 GET http://localhost:3000/books/65042650856c7167ec39377b
 
-### get books by author from author id
-GET http://localhost:3000/author/65042650856c7167ec39377e/books
+### get Astrid Lindgren books
+GET http://localhost:3000/author/65116dab4695bbe3b12244a7/books
+
+
+### Create a new author
+POST http://localhost:3000/author
+Content-Type: application/json
+
+{
+  "name": "Louise Hay",
+  "imageUrl": "https://static01.nyt.com/images/2017/09/03/multimedia/03hay-obit1/hay-obit-articleLarge-v2.jpg?quality=75&auto=webp&disable=upscale"
+}
