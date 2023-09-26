@@ -4,37 +4,35 @@
     align-items: center;
     min-height: 100vh;
     background-color: #F3E5D0;
-}
 
-.heading {
-    text-align: center;
-    margin-bottom: 20px;
-}
 
-.orders {
-    text-align: center;
-}
+    .heading {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-.books {
-    text-align: center;
-}
+    .orders {
+        text-align: center;
+    }
 
+    .books {
+        text-align: center;
+    }
+
+}
 
 .box {
     background-color: #F7F3EE;
     padding: 20px;
-    width: 2000px;
     height: 100%;
     max-width: 100%;
     border-radius: 20px;
-    box-shadow: 0px 0px 10px 0px #f7f3ee;
 
-}
+    box .bold-cell {
+        font-weight: bold;
+    }
 
-.bold-cell {
-    font-weight: bold;
-  }
-  
-.toggle-Wrapper {
-    margin: 0;
+    .toggle-Wrapper {
+        margin: 0;
+    }
 }
