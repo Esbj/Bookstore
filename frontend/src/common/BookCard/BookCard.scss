@@ -1,0 +1,15 @@
+.book-card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 2rem;
+  .title {
+    max-width: 85%;
+  }
+  img {
+    margin: auto;
+    display: block;
+    height: 550px;
+    width: 100%;
+    padding-bottom: 1rem;
+  }
+}

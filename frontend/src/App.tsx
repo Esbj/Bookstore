@@ -1,11 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout/Layout";
-import Products from "./Layout/Products/Products";
+import Products from "./Products/Products";
 import Shipping from "./Layout/Shipping";
 import AdminPage from "./Layout/AdminPage/AdminPage";
 import Payment from "./Layout/Payment";
 import CompletedOrderPage from "./Layout/Checkout/CompletedOrderPage";
 import Cart from "./Layout/Cart";
+import SingleBook from "./common/SingleBook/SingleBook";
+import AddBookPage from "./Layout/BookForm/BookForm";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="products/:id" element={<SingleBook />} />
+        <Route path="/add-book" element={<AddBookPage />} />
       </Routes>
     </>
   );

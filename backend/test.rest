@@ -15,11 +15,12 @@ POST http://localhost:3000/books/
 Content-Type: application/json
 
 {
-  "title": "Tre berättelser om Pippi", 
-  "author": "Astrid Lindgren", 
-  "description": "Pippi på äventyr", 
-  "price": 2,
-  "isbn": "ISBN: 9789129710328"
+  "title": "Fourth Wing", 
+  "author": "Rebecca Yarros", 
+  "description": "Girl and her dragon", 
+  "price": 3,
+  "isbn": "9789129710987",
+  "imageUrl": "https://m.media-amazon.com/images/I/91n7p-j5aqL._AC_UF894,1000_QL80_.jpg"
 }
 ###
 DELETE http://localhost:3000/books/
@@ -76,3 +77,9 @@ GET http://localhost:3000/author
 Content-Type: application/json
 
 
+### book by id
+
+GET http://localhost:3000/books/65042650856c7167ec39377b
+
+### get Astrid Lindgren books
+GET http://localhost:3000/author/65116dab4695bbe3b12244a7/books

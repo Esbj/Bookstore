@@ -9,6 +9,7 @@ export interface Order {
   books: Book[];
   totalPriceWithShipping: number;
   status?: string;
+  _id?: number;
 }
 
 export interface ShippingMethod {
