@@ -1,8 +1,8 @@
 import { useState } from "react";
-import HeadingToggle from "../common/HeadingToggle/HeadingToggle";
+import HeadingToggle from "../../common/HeadingToggle/HeadingToggle";
 import { Books } from "../Books/Books";
 import "./Products.scss"
-import homeLogo from '../assets/books-logo.svg'
+import homeLogo from '../../assets/books-logo.svg'
 import { Link } from "react-router-dom";
 
 export default function Products() {
@@ -13,7 +13,7 @@ export default function Products() {
       <Link to={"/"}><img className="logo" src={homeLogo} alt="" /></Link>
       <HeadingToggle selectedTab={selectedTab} updateSelectedTab={updateSelectedTab} />
       {selectedTab === "Books" && <Books />}
-      {/* {selectedTab === "Authors" && <ProductAuthors />} */}
+      {/* {selectedTab === "Authors" && <Authors />} */}
     </div>
   )
 }

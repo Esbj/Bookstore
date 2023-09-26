@@ -1,8 +1,8 @@
 import './Books.scss';
-import useFetchBooks from "../customHooks/useFetchBooks";
+import useFetchBooks from "../../customHooks/useFetchBooks";
 import { useMemo } from "react";
-import BookCard from "../common/BookCard/BookCard";
-import { Book } from "../data/BookInterface";
+import BookCard from "../../common/BookCard/BookCard";
+import { Book } from "../../data/BookInterface";
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 
 export const Books = () => {
