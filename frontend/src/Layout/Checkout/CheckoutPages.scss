@@ -1,4 +1,5 @@
 .container {
+  width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,7 +12,7 @@
 
 .heading {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
 }
 
 .formContainer{
@@ -42,7 +43,7 @@
       height: auto; 
       margin-left: 1rem;
       width: 6rem;
-      border-radius: 2rem;
+      border-radius: 6rem;
     }
     .deliveryText {
       
@@ -76,40 +77,48 @@ hr {
     height: 1px; 
     background-color: #ccc; 
     margin: 10px 0; 
-    
-    
   }
 
   Button{
+    display: flex;
+    align-items: center;
     background-color: #FFFFFF;
-    width: 50%;
+    
+    
     padding: 10rem;
-    margin: 100vh;
+    margin: 10rem;
   }
  .paymentDetails{
   margin-top: 0.5rem;
   flex-direction: column;
   display: flex;
  }
- .paymentOption{
-  margin-top: 1rem;
-  padding: 5rem;
-  display: flex;
-  flex-direction: column;
-  background-color: #FFFFFF;
-  border-radius: 2rem;
-  border: 0.1rem solid #ccc;  
-  
- }
  .paymentOptionContainer{
-  
-  display: flex;
-  flex-direction: column;
-  border: 3px solid #ccc;
-  border-radius: 2rem;
-  padding: 5rem;
-  background-color: #F6EDE2;
- }
-  .total{
-    text-align: center
+ 
+   display: flex;
+   flex-direction: column;
+   padding: 5rem;
+   background-color: #F6EDE2;
+   .paymentOption{
+    text-align: center;
+    margin-top: 1rem;
+    padding: 8rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    border-radius: 2rem;
+    border: 0.1rem solid #ccc;  
+    
   }
+  .inputFieldPayment{
+    text-align: center;
+    margin-top: 0.2rem;
+    font-size: medium;
+    height: 2rem;
+    border: 0.1rem solid #ccc;    
+    border-radius: 0.8rem;
+ }
+ .total{
+   text-align: center
+ }
+ }

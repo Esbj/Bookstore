@@ -305,6 +305,7 @@ export default function Shipping() {
             </div>
             <hr />
             <div>
+              <hr />
               <p>Subtotal: {totalPrice()}</p>
               <p>
                 Shipping:{" "}
@@ -318,6 +319,7 @@ export default function Shipping() {
                 </p>
               ) : null}
             </div>
+
             <Button
               variant="contained"
               type="submit"
@@ -325,7 +327,7 @@ export default function Shipping() {
                 margin: "2rem",
               }}
             >
-              Payment
+              Continue to Payment
             </Button>
           </div>
         </div>

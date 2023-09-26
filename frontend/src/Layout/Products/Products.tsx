@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import HeadingToggle from "../../common/HeadingToggle/HeadingToggle";
 import { ProductBooks } from "../../Products/ProductBooks";
 import { MockedProducts } from "../../data/MockedProducts";
-import Cart from "../cart";
+import Cart from "../Cart";
 import { CartContext } from "../../CartContext";
 
 export default function Products() {

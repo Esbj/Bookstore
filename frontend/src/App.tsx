@@ -5,6 +5,7 @@ import Shipping from "./Layout/Shipping";
 import AdminPage from "./Layout/AdminPage/AdminPage";
 import Payment from "./Layout/Payment";
 import CompletedOrderPage from "./Layout/Checkout/CompletedOrderPage";
+import Cart from "./Layout/Cart";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           path="/ordercompleted/:orderId"
           element={<CompletedOrderPage />}
         />
-
+        <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </>

@@ -4,12 +4,6 @@ import { OrderContext } from "../OrderContext";
 import { PaymentMethod } from "../data/OrderInterface";
 import Button from "@mui/material/Button";
 import "../Layout/Checkout/CheckoutPages.scss";
-import {
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormControl,
-} from "@mui/material";
 
 export default function Payment() {
   const { order, setPaymentMethod, shippingMethod } = useContext(OrderContext);
@@ -76,6 +70,7 @@ export default function Payment() {
               />
 
               <input
+                className="inputFieldPayment"
                 type="radio"
                 name="paymentMethod"
                 value="swish"
@@ -95,7 +90,7 @@ export default function Payment() {
             {payment?.paymentMethod.type === "swish" && (
               <div className="paymentDetails">
                 <input
-                  className="inputField"
+                  className="inputFieldPayment"
                   type="text"
                   value={newOrder.phoneNumber}
                   placeholder="Phone number"
@@ -121,7 +116,7 @@ export default function Payment() {
                 src="https://cdn.icon-icons.com/icons2/38/PNG/512/creditcard_payment_4578.png"
               />
               <input
-                className="inputField"
+                className="inputFieldPayment"
                 type="radio"
                 name="paymentMethod"
                 value="card"
@@ -145,7 +140,7 @@ export default function Payment() {
             {payment?.paymentMethod.type === "card" && (
               <div className="paymentDetails">
                 <input
-                  className="inputField"
+                  className="inputFieldPayment"
                   type="text"
                   name="name"
                   placeholder="Name on card"
@@ -163,7 +158,7 @@ export default function Payment() {
                   }}
                 />
                 <input
-                  className="inputField"
+                  className="inputFieldPayment"
                   type="text"
                   name="cardNumber"
                   placeholder="Card number"
@@ -181,7 +176,7 @@ export default function Payment() {
                   }}
                 />
                 <input
-                  className="inputField"
+                  className="inputFieldPayment"
                   type="text"
                   name="CVC"
                   placeholder="CVC"
@@ -199,7 +194,7 @@ export default function Payment() {
                   }}
                 />
                 <input
-                  className="inputField"
+                  className="inputFieldPayment"
                   type="text"
                   name="phone"
                   placeholder="Phone number"
@@ -218,14 +213,14 @@ export default function Payment() {
                 />
               </div>
             )}
+            <div className="total">
+              <h2 className="heading">Your Total</h2>
+              <h2>{newOrder?.totalPriceWithShipping}$</h2>
+            </div>
+            <Button variant="contained" type="submit">
+              Complete your order
+            </Button>
           </div>
-          <div className="total">
-            <h2 className="heading">Your Total</h2>
-            <div>{newOrder?.totalPriceWithShipping}</div>
-          </div>
-          <Button variant="contained" type="submit">
-            Complete your order
-          </Button>
         </div>
       </form>
     </>
