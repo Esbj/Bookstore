@@ -6,7 +6,7 @@ import AdminPage from "./Layout/AdminPage/AdminPage";
 import Payment from "./Layout/Checkout/Payment";
 import CompletedOrderPage from "./Layout/Checkout/CompletedOrderPage";
 import Cart from "./Layout/CartPage/Cart";
-import SingleBook from "./common/SingleBook/SingleBook";
+import SingleBook from "./Layout/SingleBook/SingleBook";
 import AddBookPage from "./Layout/BookForm/BookForm";
 import BooksByAuthor from "./Layout/BooksByAuthor/BooksByAuthor";
 import EditBook from "./Layout/EditBook/EditBook";
