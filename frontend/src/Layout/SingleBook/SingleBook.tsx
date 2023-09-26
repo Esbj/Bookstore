@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import useFetch from '../../customHooks/useFetch';
 import useFetchBook from '../../customHooks/useFetchSingleBook';
 import Logo from '../../common/Logo';
-import { Typography, Button, Divider } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 import { AddShoppingCart } from '@mui/icons-material';
 import "./SingleBook.scss"
 import { Book } from '../../data/BookInterface';

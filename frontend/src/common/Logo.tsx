@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from "../assets/books-logo.svg"
 export default function Logo() {
