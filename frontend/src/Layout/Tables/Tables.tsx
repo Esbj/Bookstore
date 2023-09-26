@@ -9,7 +9,7 @@ import { Order } from '../../data/OrderInterface';
 import { Book } from '../../data/BookInterface';
 import "./Tables.scss";
 import { Link } from 'react-router-dom';
-import { IconButton } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 
 
@@ -45,9 +45,9 @@ function Tables({ activeTab, orders, books }: TablesProps) {
               <TableHead>
                 <TableRow>
                   <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}>Order ID</TableCell>
-                  <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7'}}>Name</TableCell>
-                  <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7'}}>Email</TableCell>
-                  <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7'}}>Status</TableCell>
+                  <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}>Name</TableCell>
+                  <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}>Email</TableCell>
+                  <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}>Status</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -80,9 +80,9 @@ function Tables({ activeTab, orders, books }: TablesProps) {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7'}}>ISBN</TableCell>
-                  <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7'}}>Title</TableCell>
-                  <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7'}}>Author</TableCell>
+                  <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}>ISBN</TableCell>
+                  <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}>Title</TableCell>
+                  <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}>Author</TableCell>
                   <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}>Price</TableCell>
                   <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}>Actions</TableCell>
                 </TableRow>
@@ -107,11 +107,13 @@ function Tables({ activeTab, orders, books }: TablesProps) {
             </Table>
           </TableContainer>
 
-          <div className="add-book-button">
-            <Link to="/add-book">Add a new book</Link>
-          </div>
-          <div className="add-author">
-            <Link to="/add-author">Add a new author</Link>
+          <div className="button-container">
+            <Button variant='outlined' className="add-new-button">
+              <Link to="/add-book">Add a new book</Link>
+            </Button>
+            <Button variant='outlined' className="add-new-button">
+              <Link to="/add-author">Add a new author</Link>
+            </Button>
           </div>
 
         </div>

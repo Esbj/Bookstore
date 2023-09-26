@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import { Snackbar } from '@mui/material';
+import { Snackbar, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
-
+import "./AddAuthor.scss"
 
 const AddAuthor: React.FC = () => {
   const [name, setName] = useState("");
@@ -37,12 +37,12 @@ const AddAuthor: React.FC = () => {
   };
 
   return (
-    <>
-      <h2 className="add-author">Add new author</h2>
+    <main>
+      <Typography className='new-author-title' variant='h4' >Add new author</Typography>
       <div style={{ width: '400px', margin: '0 auto' }}>
         <form onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid xs={12}>
               <TextField
                 label="Name"
                 value={name}
@@ -50,27 +50,24 @@ const AddAuthor: React.FC = () => {
                 fullWidth
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid xs={12}>
               <TextField
                 label="Image URL"
                 value={imageUrl}
                 onChange={e => setImageUrl(e.target.value)}
                 fullWidth
               />
-              </Grid>
-
-            <Grid item xs={6}>
+            </Grid>
+            <div className='grid-action-buttons'>
               <Link to="/admin">
                 <Button variant="contained" color="secondary">
                   Cancel
                 </Button>
               </Link>
-            </Grid>
-            <Grid item xs={6}>
               <Button type="submit" variant="contained" color="primary">
                 Save
               </Button>
-            </Grid>
+            </div>
           </Grid>
         </form>
         <Snackbar open={!!successMessage} autoHideDuration={3000} onClose={() => setSuccessMessage("")}>
@@ -79,7 +76,7 @@ const AddAuthor: React.FC = () => {
           </MuiAlert>
         </Snackbar>
       </div>
-    </>
+    </main>
   );
 };
 
