@@ -18,7 +18,7 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="products/:id" element={<SingleBook />} />
-        <Route path="authors/:id" element={<BooksByAuthor />} />
+        <Route path="author/:id" element={<BooksByAuthor />} />
         <Route path="/add-book" element={<AddBookPage />} />
       </Routes>
     </>

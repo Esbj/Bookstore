@@ -1,5 +1,5 @@
 
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useFetch from '../../customHooks/useFetch';
 import useFetchBook from '../../customHooks/useFetchSingleBook';
 import Logo from '../Logo';
@@ -12,11 +12,10 @@ import { useEffect } from 'react';
 
 export default function SingleBook() {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+
   useEffect(() => {
-    navigate(`/products/${id}`);
     window.scrollTo(0, 0)
-  }, [id, navigate])
+  }, [id])
   const { book, author } = useFetchBook(`http://localhost:3000/books/${id}`)
   const { data } = useFetch(`http://localhost:3000/author/${id}`)
   const books = data as Book[]
