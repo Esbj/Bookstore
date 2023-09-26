@@ -82,6 +82,8 @@ booksRouter.put("/", async (req, res) => {
         author: req.body.author,
         description: req.body.description,
         price: req.body.price,
+        imageUrl: req.body.imageUrl, 
+        
     };
     try {
         const book = await bookModel.findOne({ _id: bookId });
