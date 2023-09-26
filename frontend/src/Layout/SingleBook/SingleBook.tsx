@@ -10,7 +10,7 @@ import { Book } from '../../data/BookInterface';
 import BookCard from '../../common/BookCard/BookCard';
 import { useContext, useEffect } from 'react';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
-
+import Grid from '@mui/material/Unstable_Grid2';
 import Cart from '../CartPage/Cart';
 import { CartContext } from '../../CartContext';
 
@@ -19,7 +19,7 @@ export default function SingleBook() {
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    
+
     window.scrollTo(0, 0);
   }, [id]);
   const { book, author } = useFetchBook(`http://localhost:3000/books/${id}`);
@@ -30,7 +30,6 @@ export default function SingleBook() {
   return (
     <div>
       {isCartOpen && <Cart />}
-
       <main>
         <nav className="navbar">
           <Logo />
@@ -56,18 +55,18 @@ export default function SingleBook() {
         </div>
         {booksByAuthor?.length > 1 && (
           <div className="moreBooks">
-            
-              <Typography variant="h4">
-                More titles by {author?.name}
-              </Typography>
-           
-            <div className="booksByAuthor">
+
+            <Typography variant="h4">
+              More titles by {author?.name}
+            </Typography>
+
+            <Grid container className="booksByAuthor">
               {booksByAuthor?.map((book, index) => (
-                <div key={index}>
+                <Grid key={index}>
                   {book._id !== id ? <BookCard book={book} /> : ""}
-                </div>
+                </Grid>
               ))}
-            </div>
+            </Grid>
           </div>
         )}
       </main>
