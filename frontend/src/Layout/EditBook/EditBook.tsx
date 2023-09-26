@@ -166,12 +166,12 @@ function EditBook() {
                         </div>
 
                         <div>
-                        <input
-  type="text"
-  value={editedBook.imageUrl || ''}
-  onChange={(e) => setEditedBook({ ...editedBook, imageUrl: e.target.value })}
-  disabled={!isEditing}
-/>
+                            <input
+                                type="text"
+                                value={editedBook.imageUrl || ''}
+                                onChange={(e) => setEditedBook({ ...editedBook, imageUrl: e.target.value })}
+                                disabled={!isEditing}
+                            />
                             <img src={book.imageUrl} alt="Book Cover" />
                         </div>
 

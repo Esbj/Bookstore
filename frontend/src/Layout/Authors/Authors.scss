@@ -1,0 +1,16 @@
+.authorCard {
+  img {
+    max-width: 100%;
+  }
+  a {
+    text-align: center;
+    color: #000;
+    text-decoration: none;
+    &:visited {
+      color: #000;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

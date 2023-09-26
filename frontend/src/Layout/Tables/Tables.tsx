@@ -110,6 +110,10 @@ function Tables({ activeTab, orders, books }: TablesProps) {
           <div className="add-book-button">
             <Link to="/add-book">Add a new book</Link>
           </div>
+          <div className="add-author">
+            <Link to="/add-author">Add a new author</Link>
+          </div>
+
         </div>
       )}
     </React.Fragment>

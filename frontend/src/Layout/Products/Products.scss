@@ -4,7 +4,12 @@
   padding: 3rem;
   margin: 3rem auto;
   border-radius: 3rem;
-  img.logo {
-    height: 50px;
+  a,
+  a:visited {
+    color: #000;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

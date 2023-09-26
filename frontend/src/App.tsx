@@ -6,9 +6,11 @@ import AdminPage from "./Layout/AdminPage/AdminPage";
 import Payment from "./Layout/Checkout/Payment";
 import CompletedOrderPage from "./Layout/Checkout/CompletedOrderPage";
 import Cart from "./Layout/CartPage/Cart";
-import SingleBook from "./common/SingleBook/SingleBook";
+import SingleBook from "./Layout/SingleBook/SingleBook";
 import AddBookPage from "./Layout/BookForm/BookForm";
+import BooksByAuthor from "./Layout/BooksByAuthor/BooksByAuthor";
 import EditBook from "./Layout/EditBook/EditBook";
+import AddAuthor from "./Layout/AddAuthor/AddAuthor";
 
 
 function App() {
@@ -26,9 +28,11 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="products/:id" element={<SingleBook />} />
+        <Route path="author/:id" element={<BooksByAuthor />} />
         <Route path="/add-book" element={<AddBookPage />} />
+        <Route path="/add-author" element={<AddAuthor />} />
         <Route path="/edit-book/:isbn" element={<EditBook />} />
-        
+
       </Routes>
     </>
   );

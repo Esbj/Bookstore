@@ -333,6 +333,7 @@ export default function Shipping() {
             </div>
 
             <Button
+              className="checkout-btn"
               variant="contained"
               type="submit"
               sx={{

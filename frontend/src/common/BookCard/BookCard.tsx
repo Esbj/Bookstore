@@ -9,8 +9,9 @@ type Props = {
 export default function BookCard({ book }: Props) {
   return (
     <div className='book-card'>
-      <img src={book.imageUrl} />
-      <Link to={`/products/${book._id}`}><Typography className='title' variant='h4'>{book.title}</Typography></Link>
+      <Link to={`/products/${book._id}`}>
+        <img src={book.imageUrl} />
+        <Typography className='title' variant='h4'>{book.title}</Typography></Link>
       <Typography variant='h5'>{book.author}</Typography>
     </div >
   )

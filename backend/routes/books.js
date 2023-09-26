@@ -4,6 +4,7 @@ const authorModel = require("../models/authorModel");
 const bookModel = require("../models/bookModel");
 
 
+
 //get all books
 booksRouter.get("/", async (req, res) => {
   const books = await bookModel.find({});
@@ -53,23 +54,25 @@ booksRouter.post("/", async (req, res) => {
   const existingBook = await bookModel.findOne({ isbn: newBook.isbn })
   if (!existingBook) {
     const addedBook = await bookModel.create(newBook);
-    const author = await authorModel.findOne({ name: newBook.author });
-    if (!author) {
-      const newAuthor = new authorModel({
-        name: newBook.author,
-        books: [addedBook],
-      });
-      await newAuthor.save();
-    } else {
-      author.books.push(addedBook);
-      await author.save();
-    }
+    // const author = await authorModel.findOne({ name: newBook.author });
+    // if (!author) {
+    //   const newAuthor = new authorModel({
+    //     name: newBook.author,
+    //     // books: [addedBook],
+    //   });
+    //   await newAuthor.save();
+    // } else {
+    //   author.books.push(addedBook);
+    //   await author.save();
+    // }
     res.status(201).json(addedBook);
   } else {
     res.status(409).send("Book already exists")
   }
 
 });
+
+
 
 
 // remove book

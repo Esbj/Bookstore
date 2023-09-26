@@ -263,7 +263,7 @@ export default function Payment() {
                 {newOrder?.totalPriceWithShipping}$
               </Typography>
             </div>
-            <Button variant="contained" type="submit">
+            <Button className="checkout-btn" variant="contained" type="submit">
               Complete your order
             </Button>
           </div>

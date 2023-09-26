@@ -1,27 +1,29 @@
-import { CartContext } from "../../CartContext";
-import { useParams, useNavigate } from "react-router-dom";
-import useFetchBooks from "../../customHooks/useFetchBooks";
-import useFetchBook from "../../customHooks/useFetchSingleBook";
-import Logo from "../Logo";
-import { Typography, Button, Divider } from "@mui/material";
-import { AddShoppingCart } from "@mui/icons-material";
-import "./SingleBook.scss";
-import { Book } from "../../data/BookInterface";
-import BookCard from "../BookCard/BookCard";
-import { useEffect, useContext } from "react";
-import Cart from "../../Layout/CartPage/Cart";
-import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+
+import { useParams } from 'react-router-dom';
+import useFetch from '../../customHooks/useFetch';
+import useFetchBook from '../../customHooks/useFetchSingleBook';
+import Logo from '../../common/Logo';
+import { Typography, Button } from '@mui/material';
+import { AddShoppingCart } from '@mui/icons-material';
+import "./SingleBook.scss"
+import { Book } from '../../data/BookInterface';
+import BookCard from '../../common/BookCard/BookCard';
+import { useContext, useEffect } from 'react';
+import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
+
+import Cart from '../CartPage/Cart';
+import { CartContext } from '../../CartContext';
 
 export default function SingleBook() {
   const { addToCart, toggleCart, isCartOpen } = useContext(CartContext);
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+
   useEffect(() => {
-    navigate(`/products/${id}`);
+    
     window.scrollTo(0, 0);
-  }, [id, navigate]);
+  }, [id]);
   const { book, author } = useFetchBook(`http://localhost:3000/books/${id}`);
-  const { data } = useFetchBooks(
+  const { data } = useFetch(
     `http://localhost:3000/books/${id}/same-author`
   );
   const booksByAuthor = data as Book[];
@@ -54,11 +56,11 @@ export default function SingleBook() {
         </div>
         {booksByAuthor?.length > 1 && (
           <div className="moreBooks">
-            <Divider>
+            
               <Typography variant="h4">
                 More titles by {author?.name}
               </Typography>
-            </Divider>
+           
             <div className="booksByAuthor">
               {booksByAuthor?.map((book, index) => (
                 <div key={index}>

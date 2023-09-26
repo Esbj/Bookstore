@@ -11,9 +11,10 @@ main {
   }
   .bookInfo {
     display: flex;
-    gap: 10%;
+    gap: 10rem;
     justify-content: center;
     margin-bottom: 3rem;
+    flex-wrap: wrap;
     img {
       width: 25%;
     }
@@ -21,22 +22,34 @@ main {
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      button {
-        align-self: flex-start;
-      }
     }
   }
   .moreBooks {
-    span {
-      margin: 3rem 0;
+    h4 {
+      text-align: center;
     }
     .booksByAuthor {
-      display: flex;
-      flex: 1;
-      gap: 3rem;
       justify-content: center;
-      .book-card {
-        width: 350px;
+      a:visited,
+      a {
+        color: black;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1093px) {
+  main {
+    max-width: 95%;
+    margin: 2rem auto;
+    padding: 1rem;
+    .bookInfo {
+      gap: 2rem;
+      img {
+        width: 100%;
       }
     }
   }
