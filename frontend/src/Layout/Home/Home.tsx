@@ -4,12 +4,16 @@ import Button from '@mui/material/Button';
 import bookImage from './bookimage.jpeg';
 import secondBook from './saga.jpg';
 import bookIcon from '../../assets/books-logo.svg';
-
+import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 function Home() {
   return (
     <div className='round-corner'>
-      <div className="bookIcon">
-        <img src={bookIcon} alt="book-logo" className="book-icon" />
+      <div className="header">
+
+        <div className="bookIcon">
+          <img src={bookIcon} alt="book-logo" className="book-icon" />
+        </div>
+        <Link to={"/admin"}><LoginRoundedIcon /></Link>
       </div>
       <div className="content">
 
