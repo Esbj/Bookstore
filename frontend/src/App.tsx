@@ -7,6 +7,7 @@ import Payment from "./Layout/Payment";
 import SingleBook from "./common/SingleBook/SingleBook";
 import AddBookPage from "./Layout/BookForm/BookForm";
 import EditBook from "./Layout/EditBook/EditBook";
+import AddAuthor from "./Layout/AddAuthor/AddAuthor";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="products/:id" element={<SingleBook />} />
         <Route path="/add-book" element={<AddBookPage />} />
+        <Route path="/add-author" element={<AddAuthor />} />
         <Route path="/edit-book/:isbn" element={<EditBook />} />
         
       </Routes>
