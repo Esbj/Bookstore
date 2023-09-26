@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { OrderContext } from "../OrderContext";
-import { PaymentMethod } from "../data/OrderInterface";
+import { OrderContext } from "../../OrderContext";
+import { PaymentMethod } from "../../data/OrderInterface";
 import Button from "@mui/material/Button";
-import "../Layout/Checkout/CheckoutPages.scss";
+import "./CheckoutPages.scss";
 import Typography from "@mui/material/Typography";
 
 export default function Payment() {
@@ -252,7 +252,12 @@ export default function Payment() {
               <Typography variant="h4" className="heading">
                 Your Total
               </Typography>
-              <Typography variant="h4">
+              <Typography
+                sx={{
+                  paddingBottom: "2rem",
+                }}
+                variant="h4"
+              >
                 {newOrder?.totalPriceWithShipping}$
               </Typography>
             </div>

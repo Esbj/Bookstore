@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout/Layout";
 import Products from "./Products/Products";
-import Shipping from "./Layout/Shipping";
+import Shipping from "./Layout/Checkout/Shipping";
 import AdminPage from "./Layout/AdminPage/AdminPage";
-import Payment from "./Layout/Payment";
+import Payment from "./Layout/Checkout/Payment";
 import CompletedOrderPage from "./Layout/Checkout/CompletedOrderPage";
-import Cart from "./Layout/Cart";
+import Cart from "./Layout/CartPage/Cart";
 import SingleBook from "./common/SingleBook/SingleBook";
 import AddBookPage from "./Layout/BookForm/BookForm";
 

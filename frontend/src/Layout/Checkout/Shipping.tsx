@@ -1,10 +1,10 @@
 import { useState, useContext, useEffect } from "react";
-import { Book } from "../data/BookInterface";
-import { CartContext } from "../CartContext";
-import { Order, ShippingMethod } from "../data/OrderInterface";
+import { Book } from "../../data/BookInterface";
+import { CartContext } from "../../CartContext";
+import { Order, ShippingMethod } from "../../data/OrderInterface";
 import { useNavigate } from "react-router-dom";
-import { OrderContext } from "../OrderContext";
-import "../Layout/Checkout/CheckoutPages.scss";
+import { OrderContext } from "../../OrderContext";
+import "./CheckoutPages.scss";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import {
