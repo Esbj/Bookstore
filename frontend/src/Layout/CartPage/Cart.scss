@@ -6,9 +6,11 @@
           display: flex;
           background-color: #F6EDE2;
           border-radius: 0 0 2rem 2rem;
-          border: 0.1rem solid #ccc;
-          padding: 1rem;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          padding-bottom: 1rem;
           z-index: 9999;
+          
   }
   
   .cartItemInfo{
@@ -22,6 +24,7 @@
     
   }
   .cartTab{
+   
     display: flex;
     flex-direction: row;
     .tabItem{
@@ -36,6 +39,8 @@
   .buttonsForItem{
     display: flex;
     justify-content: center;
+    margin: 1rem;
+    gap: 2rem;
    
   }
 
@@ -44,10 +49,12 @@
 
 @media screen and (max-width: 1093px){
   .cartContainer{
+    background-color: #F6EDE2;
     z-index: 9999;
     width: 100%;
     padding: 0.5rem;
     justify-content: center;
+    border-radius: 2rem;
 }
 .cartItemInfo{
   align-self: center;
@@ -63,5 +70,17 @@
   flex-direction: column;
   align-items: center;
   
+}
+.cartTab{
+   
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  .tabItem{
+    padding: 3rem;
+   
+  
+  }
 }
 }

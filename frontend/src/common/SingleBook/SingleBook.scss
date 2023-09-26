@@ -4,6 +4,11 @@ main {
   background-color: #f7f3ee;
   margin: 3rem auto;
   padding: 2rem;
+  .navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   .bookInfo {
     display: flex;
     gap: 10%;
@@ -35,4 +40,5 @@ main {
       }
     }
   }
+
 }

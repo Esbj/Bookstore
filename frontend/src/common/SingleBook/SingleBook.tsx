@@ -13,7 +13,7 @@ import Cart from "../../Layout/CartPage/Cart";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 
 export default function SingleBook() {
-  const { addToCart, toggleCart} = useContext(CartContext);
+  const { addToCart, toggleCart, isCartOpen } = useContext(CartContext);
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   useEffect(() => {
@@ -27,10 +27,13 @@ export default function SingleBook() {
   const booksByAuthor = data as Book[];
   return (
     <main>
-      <ShoppingCartRoundedIcon onClick={() => toggleCart()}>
-        <Cart />
-      </ShoppingCartRoundedIcon>
-      <Logo />
+      {isCartOpen && <Cart />}
+      <nav className="navbar">
+        <Logo />
+        <ShoppingCartRoundedIcon onClick={toggleCart}>
+          {" "}
+        </ShoppingCartRoundedIcon>
+      </nav>
 
       <div className="bookInfo">
         <img src={book?.imageUrl} alt={book?.title} />
