@@ -85,46 +85,67 @@ hr {
     display: flex;
     align-items: center;
     background-color: #FFFFFF;
-    
-    
+    width: 30rem;
+    align-self: center;
     padding: 10rem;
     margin: 10rem;
   }
- .paymentDetails{
-  margin-top: 0.5rem;
-  flex-direction: column;
-  display: flex;
- }
+  .paymentDetailsContainer{
+    display: flex;
+    flex-direction: column;
+  }
+  .paymentDetails {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .paymentOptionWrapper{
+    display: flex;
+    flex-direction: row;
+    width: 2rem;
+    align-self: center;
+    justify-content: center;
+  }
+  
+  .paymentOption {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 8rem;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    border-radius: 2rem;
+    border: 0.1rem solid #ccc; 
+    width: 100%;
+    max-width: 100%;
+    min-width: 50%; 
+  }
+  
  .paymentOptionContainer{
  
    display: flex;
    flex-direction: column;
    padding: 5rem;
    background-color: #F6EDE2;
-   .paymentOption{
-    text-align: center;
-    margin-top: 1rem;
-    padding: 8rem;
-    display: flex;
-    flex-direction: column;
-    background-color: #FFFFFF;
-    border-radius: 2rem;
-    border: 0.1rem solid #ccc;  
-    
-  }
-  .inputFieldPayment{
+   .inputFieldPayment{
     text-align: center;
     margin-top: 0.2rem;
     font-size: medium;
     height: 2rem;
     border: 0.1rem solid #ccc;    
     border-radius: 0.8rem;
+    width: 30rem;
  }
  .total{
    text-align: center
  }
  .paymentIcon{
-  width: 5rem;
+  width: 6rem;
+  height: 8rem;
   padding-bottom: 1rem;
  }
+ 
  }

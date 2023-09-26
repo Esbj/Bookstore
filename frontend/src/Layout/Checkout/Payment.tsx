@@ -61,12 +61,13 @@ export default function Payment() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div className="container">
-          <div className="paymentOptionContainer">
-            <Typography variant="h4" className="heading">
-              Select payment option
-            </Typography>
+        <div className="paymentOptionContainer">
+          <Typography variant="h4" className="heading">
+            Select payment option
+          </Typography>
+          <div className="paymentOptionWrapper">
             <div
+              className="paymentOption"
               onClick={() => {
                 setPayment({
                   paymentMethod: {
@@ -77,13 +78,11 @@ export default function Payment() {
                   },
                 });
               }}
-              className="paymentOption"
             >
               <img
                 className="paymentIcon"
                 src="https://images.ctfassets.net/zrqoyh8r449h/5Kbx9XCa4oJjwgUP0RNDZY/176707fc098ba9c33a4cef9b039236f6/Swish_Logo_Primary_Light-BG_P3.png?w=600"
               />
-
               <input
                 className="inputFieldPayment"
                 type="radio"
@@ -102,31 +101,9 @@ export default function Payment() {
                 }}
               />
             </div>
-            {payment?.paymentMethod.type === "swish" && (
-              <div className="paymentDetails">
-                <input
-                  required
-                  className="inputFieldPayment"
-                  type="text"
-                  value={newOrder.phoneNumber}
-                  placeholder="Phone number"
-                  onChange={(e) => {
-                    const newPhoneNumber = e.target.value;
-                    setPayment((prevState) => ({
-                      paymentMethod: {
-                        type: "swish",
-                        details: {
-                          ...prevState?.paymentMethod.details,
-                          phone: newPhoneNumber,
-                        },
-                      },
-                    }));
-                  }}
-                />
-              </div>
-            )}
 
             <div
+              className="paymentOption"
               onClick={() => {
                 setPayment({
                   paymentMethod: {
@@ -140,7 +117,6 @@ export default function Payment() {
                   },
                 });
               }}
-              className="paymentOption"
             >
               <img
                 className="paymentIcon"
@@ -167,6 +143,32 @@ export default function Payment() {
                 }}
               />
             </div>
+          </div>
+
+          <div className="paymentDetailsContainer">
+            {payment?.paymentMethod.type === "swish" && (
+              <div className="paymentDetails">
+                <input
+                  required
+                  className="inputFieldPayment"
+                  type="text"
+                  value={newOrder.phoneNumber}
+                  placeholder="Phone number"
+                  onChange={(e) => {
+                    const newPhoneNumber = e.target.value;
+                    setPayment((prevState) => ({
+                      paymentMethod: {
+                        type: "swish",
+                        details: {
+                          ...prevState?.paymentMethod.details,
+                          phone: newPhoneNumber,
+                        },
+                      },
+                    }));
+                  }}
+                />
+              </div>
+            )}
 
             {payment?.paymentMethod.type === "card" && (
               <div className="paymentDetails">
