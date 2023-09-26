@@ -11,6 +11,8 @@ import "./Tables.scss";
 import { Link } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import Logo from '../../common/Logo';
+
 
 
 type TablesProps = {
@@ -36,10 +38,13 @@ function Tables({ activeTab, orders, books }: TablesProps) {
     setOrdersState(updatedOrders);
   };
 
+
+  
   return (
     <React.Fragment>
       {activeTab === 'Orders' && (
         <div className="orders" style={{ marginBottom: '20px' }}>
+          
           <TableContainer>
             <Table>
               <TableHead>
@@ -70,10 +75,14 @@ function Tables({ activeTab, orders, books }: TablesProps) {
                   </TableRow>
                 ))}
               </TableBody>
+              
             </Table>
+            <Logo />
           </TableContainer>
         </div>
       )}
+
+      
       {activeTab === 'Books' && (
         <div className="books" style={{ marginBottom: '20px' }}>
           <TableContainer>
@@ -113,10 +122,12 @@ function Tables({ activeTab, orders, books }: TablesProps) {
           <div className="add-author">
             <Link to="/add-author">Add a new author</Link>
           </div>
-
+          <Logo />
+          
         </div>
       )}
     </React.Fragment>
+    
   );
 }
 
