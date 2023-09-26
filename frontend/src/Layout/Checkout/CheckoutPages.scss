@@ -1,151 +1,144 @@
 .container {
   width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 10;
-    
-    
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 10;
 }
 
 .heading {
-    text-align: center;
-    margin-bottom: 4rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
-.formContainer{
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    background-color: #F6EDE2;
+.formContainer {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  background-color: #f6ede2;
+  border-radius: 2rem;
+  border: 0.1rem solid #ccc;
+
+  .deliveryOptionContainer {
     border-radius: 2rem;
-    border: 0.1rem solid #ccc;  
-
-    .deliveryOptionContainer{
-      border-radius: 2rem; 
-      flex-direction: column;
-      display: flex;
-      text-align: center;
-    }
-    .deliveryOption {
-      text-align: center;
-      display: flex;
-      align-items: center;
-       
-    }
-    .deliveryIcon{
-      
-      height: auto; 
-      margin-left: 1rem;
-      width: 6rem;
-      border-radius: 12rem;
-    }
-    .deliveryText {
-      
-      flex: 1; 
-      display: flex;
-      width: 100%;
-      margin-right: auto;
-      flex-direction: column; 
-    }
-    
-    .deliveryCost {
-      display: flex;
-      flex-direction: row; 
-      align-items: flex-end; 
-      
-      margin-right: auto;
-    }
-    .inputField{
-        text-align: center;
-        margin-top: 0.5rem;
-        flex-basis: 1;
-        font-size: medium;
-        height: 3rem;
-        width: 50%;
-        border: 0.1rem solid #ccc;    
-        border-radius: 0.8rem;
-    }
-}
-hr {
-    border: 0; 
-    height: 1px; 
-    background-color: #ccc; 
-    margin: 10px 0; 
+    flex-direction: column;
+    display: flex;
+    text-align: center;
   }
-
-  Button{
+  .deliveryOption {
+    text-align: center;
     display: flex;
     align-items: center;
-    background-color: #FFFFFF;
-    width: 30rem;
-    align-self: center;
-    padding: 10rem;
-    margin: 10rem;
   }
-  .paymentDetailsContainer{
+  .deliveryIcon {
+    height: auto;
+    margin-left: 1rem;
+    width: 6rem;
+    border-radius: 12rem;
+  }
+  .deliveryText {
+    flex: 1;
     display: flex;
+    width: 100%;
+    margin-right: auto;
     flex-direction: column;
   }
-  .paymentDetails {
-    margin-top: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .paymentOptionWrapper{
+
+  .deliveryCost {
     display: flex;
     flex-direction: row;
-    width: 2rem;
-    align-self: center;
-    justify-content: center;
+    align-items: flex-end;
+
+    margin-right: auto;
   }
-  
-  .paymentOption {
+  .inputField {
     text-align: center;
-    margin-top: 1rem;
-    padding: 8rem;
-    display: flex;
-    flex: 1;
-    align-items: center;
-    flex-direction: column;
-    background-color: #FFFFFF;
-    border-radius: 2rem;
-    border: 0.1rem solid #ccc; 
-    width: 100%;
-    max-width: 100%;
-    min-width: 50%; 
+    margin-top: 0.5rem;
+    flex-basis: 1;
+    font-size: medium;
+    height: 3rem;
+    width: 50%;
+    border: 0.1rem solid #ccc;
+    border-radius: 0.8rem;
   }
-  
- .paymentOptionContainer{
- 
-   display: flex;
-   flex-direction: column;
-   padding: 5rem;
-   background-color: #F6EDE2;
-   .inputFieldPayment{
+}
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #ccc;
+  margin: 10px 0;
+}
+
+.checkout-btn {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  width: 30rem;
+  align-self: center;
+  padding: 10rem;
+  margin: 10rem;
+}
+.paymentDetailsContainer {
+  display: flex;
+  flex-direction: column;
+}
+.paymentDetails {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.paymentOptionWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 2rem;
+  align-self: center;
+  justify-content: center;
+}
+
+.paymentOption {
+  text-align: center;
+  margin-top: 1rem;
+  padding: 8rem;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 2rem;
+  border: 0.1rem solid #ccc;
+  width: 100%;
+  max-width: 100%;
+  min-width: 50%;
+}
+
+.paymentOptionContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 5rem;
+  background-color: #f6ede2;
+  .inputFieldPayment {
     text-align: center;
     margin-top: 0.2rem;
     font-size: medium;
     height: 2rem;
-    border: 0.1rem solid #ccc;    
+    border: 0.1rem solid #ccc;
     border-radius: 0.8rem;
     width: 30rem;
- }
- .total{
-   text-align: center
- }
- .paymentIcon{
-  width: 6rem;
-  height: 8rem;
-  padding-bottom: 1rem;
- }
- 
- }
+  }
+  .total {
+    text-align: center;
+  }
+  .paymentIcon {
+    width: 6rem;
+    height: 8rem;
+    padding-bottom: 1rem;
+  }
+}

@@ -9,6 +9,7 @@ import "./SingleBook.scss"
 import { Book } from '../../data/BookInterface';
 import BookCard from '../../common/BookCard/BookCard';
 import { useEffect } from 'react';
+import Grid from '@mui/material/Unstable_Grid2';
 
 export default function SingleBook() {
   const { id } = useParams<{ id: string }>();
@@ -37,18 +38,18 @@ export default function SingleBook() {
       </div>
       {booksByAuthor?.length > 1 &&
         <div className="moreBooks">
-          <Divider><Typography variant='h4'>More titles by {author?.name}</Typography></Divider>
-          <div className="booksByAuthor">
+          <Typography variant='h4'>More titles by {author?.name}</Typography>
+          <Grid container spacing={4} className="booksByAuthor">
             {booksByAuthor?.map((book, index) => (
-              <div key={index}>
+              <Grid xs={12} md={4} key={index}>
                 {
                   book._id !== id ?
                     <BookCard book={book} />
                     : ''
                 }
-              </div>
+              </Grid>
             ))}
-          </div>
+          </Grid>
         </div>
       }
     </main>
