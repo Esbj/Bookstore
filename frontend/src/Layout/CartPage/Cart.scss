@@ -1,11 +1,11 @@
 @media screen and (min-width: 1094px){
   .cartContainer{
           position: fixed;
-          top: 0;
+          top: 2rem;
           right: 2rem;
           display: flex;
           background-color: #F6EDE2;
-          border-radius: 0 0 2rem 2rem;
+          border-radius: 2rem 2rem 2rem 2rem;
           padding-left: 1rem;
           padding-right: 1rem;
           padding-bottom: 1rem;
@@ -16,6 +16,7 @@
   .cartItemInfo{
     align-self: center;
     text-align: center;
+    margin-bottom: 20px;
   }
   .cartContent{
     display: flex;
@@ -24,13 +25,12 @@
     
   }
   .cartTab{
-   
-    display: flex;
-    flex-direction: row;
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      margin-top: 15px;
     .tabItem{
-      
-      text-align: center;
-  
+      margin-right: 10px;
     }
   }
   .cartContainer.closed {
@@ -48,21 +48,29 @@
 
 
 @media screen and (max-width: 1093px){
-  .cartContainer{
-    background-color: #F6EDE2;
-    z-index: 9999;
+  .cartContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 0.5rem;
+    height: 100%;
+    background-color: rgba(246, 237, 226); /* Use rgba for transparency */
+    z-index: 9999;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    border-radius: 2rem;
+    border-radius: 0;
 }
 .cartItemInfo{
   align-self: center;
   text-align: center;
+  margin-bottom: 20px;
 }
 .buttonsForItem{
   display: flex;
   justify-content: center;
+  gap: 2rem;
+  margin-top: 10px;
  
 }
 .cartContent{
@@ -72,15 +80,11 @@
   
 }
 .cartTab{
-   
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  
-  .tabItem{
-    padding: 3rem;
-   
-  
-  }
+  align-items: center;
+  margin-bottom: 20px;
+}
+.tabItem{
+  margin-left: 10px;
 }
 }

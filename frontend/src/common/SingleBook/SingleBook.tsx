@@ -26,44 +26,49 @@ export default function SingleBook() {
   );
   const booksByAuthor = data as Book[];
   return (
-    <main>
+    <div>
       {isCartOpen && <Cart />}
-      <nav className="navbar">
-        <Logo />
-        <ShoppingCartRoundedIcon onClick={toggleCart}>
-          {" "}
-        </ShoppingCartRoundedIcon>
-      </nav>
 
-      <div className="bookInfo">
-        <img src={book?.imageUrl} alt={book?.title} />
-        <div className="purchaseInfo">
-          <Typography variant="h4">{book?.title}</Typography>
-          <Typography variant="subtitle2">Author: {author?.name}</Typography>
-          <Typography variant="subtitle1">Price: €{book?.price}</Typography>
-          <Button variant="outlined" onClick={() => book && addToCart(book)}>
-            ADD TO CART <AddShoppingCart />
-          </Button>
-        </div>
-        <div className="description">
-          <Typography variant="h4">Description</Typography>
-          <Typography variant="body1">{book?.description}</Typography>
-        </div>
-      </div>
-      {booksByAuthor?.length > 1 && (
-        <div className="moreBooks">
-          <Divider>
-            <Typography variant="h4">More titles by {author?.name}</Typography>
-          </Divider>
-          <div className="booksByAuthor">
-            {booksByAuthor?.map((book, index) => (
-              <div key={index}>
-                {book._id !== id ? <BookCard book={book} /> : ""}
-              </div>
-            ))}
+      <main>
+        <nav className="navbar">
+          <Logo />
+          <ShoppingCartRoundedIcon onClick={toggleCart}>
+            {" "}
+          </ShoppingCartRoundedIcon>
+        </nav>
+
+        <div className="bookInfo">
+          <img src={book?.imageUrl} alt={book?.title} />
+          <div className="purchaseInfo">
+            <Typography variant="h4">{book?.title}</Typography>
+            <Typography variant="subtitle2">Author: {author?.name}</Typography>
+            <Typography variant="subtitle1">Price: €{book?.price}</Typography>
+            <Button variant="outlined" onClick={() => book && addToCart(book)}>
+              ADD TO CART <AddShoppingCart />
+            </Button>
+          </div>
+          <div className="description">
+            <Typography variant="h4">Description</Typography>
+            <Typography variant="body1">{book?.description}</Typography>
           </div>
         </div>
-      )}
-    </main>
+        {booksByAuthor?.length > 1 && (
+          <div className="moreBooks">
+            <Divider>
+              <Typography variant="h4">
+                More titles by {author?.name}
+              </Typography>
+            </Divider>
+            <div className="booksByAuthor">
+              {booksByAuthor?.map((book, index) => (
+                <div key={index}>
+                  {book._id !== id ? <BookCard book={book} /> : ""}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
   );
 }

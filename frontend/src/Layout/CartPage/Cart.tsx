@@ -5,6 +5,9 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import "./Cart.scss";
+import { IconButton } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 export default function Cart() {
   const { cart, decreaseQuantity, increaseQuantity, totalPrice, toggleCart } =
@@ -14,9 +17,10 @@ export default function Cart() {
   return (
     <div className="cartContainer">
       <div className="cartContent">
-        <div className="cartTab"></div>
-        <Typography className="tabItem" variant="h5">
-          Your Cart
+        <div className="cartTab">
+          <Typography className="tabItem" variant="h5">
+            Your cart
+          </Typography>
           <CancelRoundedIcon
             onClick={toggleCart}
             className="tabItem"
@@ -24,7 +28,7 @@ export default function Cart() {
               fontSize: "large",
             }}
           ></CancelRoundedIcon>
-        </Typography>
+        </div>
 
         {cart.length === 0 ? (
           <h4>Your cart is empty</h4>
@@ -36,19 +40,13 @@ export default function Cart() {
                   {book.title} á {book.price} $
                 </Typography>
                 <div className="buttonsForItem">
-                  <Button
-                    variant="contained"
-                    onClick={() => decreaseQuantity(book)}
-                  >
-                    -
-                  </Button>
+                  <IconButton aria-label="remove">
+                    <RemoveIcon onClick={() => decreaseQuantity(book)} />
+                  </IconButton>
                   <Typography variant="h4">{book.quantity} pcs</Typography>
-                  <Button
-                    variant="contained"
-                    onClick={() => increaseQuantity(book)}
-                  >
-                    +
-                  </Button>
+                  <IconButton aria-label="add">
+                    <AddIcon onClick={() => increaseQuantity(book)} />
+                  </IconButton>
                 </div>
                 <hr />
               </div>
