@@ -9,6 +9,8 @@ import { Order } from '../../data/OrderInterface';
 import { Book } from '../../data/BookInterface';
 import "./Tables.scss";
 import { Link } from 'react-router-dom';
+import { IconButton } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 
 
 type TablesProps = {
@@ -82,6 +84,7 @@ function Tables({ activeTab, orders, books }: TablesProps) {
                   <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7'}}>Title</TableCell>
                   <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7'}}>Author</TableCell>
                   <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}>Price</TableCell>
+                  <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}>Actions</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -90,7 +93,14 @@ function Tables({ activeTab, orders, books }: TablesProps) {
                     <TableCell>{book.isbn}</TableCell>
                     <TableCell>{book.title}</TableCell>
                     <TableCell>{book.author}</TableCell>
-                    <TableCell>{book.price}</TableCell>
+                    <TableCell>{book.price}$</TableCell>
+                    <TableCell>
+                      <Link to={`/edit-book/${book.isbn}`}>
+                        <IconButton>
+                          <EditIcon />
+                        </IconButton>
+                      </Link>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -100,8 +110,6 @@ function Tables({ activeTab, orders, books }: TablesProps) {
           <div className="add-book-button">
             <Link to="/add-book">Add a new book</Link>
           </div>
-        
-        
         </div>
       )}
     </React.Fragment>

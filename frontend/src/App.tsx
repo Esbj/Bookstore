@@ -8,6 +8,8 @@ import CompletedOrderPage from "./Layout/Checkout/CompletedOrderPage";
 import Cart from "./Layout/CartPage/Cart";
 import SingleBook from "./common/SingleBook/SingleBook";
 import AddBookPage from "./Layout/BookForm/BookForm";
+import EditBook from "./Layout/EditBook/EditBook";
+
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="products/:id" element={<SingleBook />} />
         <Route path="/add-book" element={<AddBookPage />} />
+        <Route path="/edit-book/:isbn" element={<EditBook />} />
+        
       </Routes>
     </>
   );
