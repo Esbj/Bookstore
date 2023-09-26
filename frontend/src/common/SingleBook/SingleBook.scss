@@ -1,0 +1,38 @@
+main {
+  border-radius: 3rem;
+  width: 70%;
+  background-color: #f7f3ee;
+  margin: 3rem auto;
+  padding: 2rem;
+  .bookInfo {
+    display: flex;
+    gap: 10%;
+    justify-content: center;
+    margin-bottom: 3rem;
+    img {
+      width: 25%;
+    }
+    .purchaseInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      button {
+        align-self: flex-start;
+      }
+    }
+  }
+  .moreBooks {
+    span {
+      margin: 3rem 0;
+    }
+    .booksByAuthor {
+      display: flex;
+      flex: 1;
+      gap: 3rem;
+      justify-content: center;
+      .book-card {
+        width: 350px;
+      }
+    }
+  }
+}

@@ -77,3 +77,9 @@ GET http://localhost:3000/author
 Content-Type: application/json
 
 
+### book by id
+
+GET http://localhost:3000/books/65042650856c7167ec39377b
+
+### get Astrid Lindgren books
+GET http://localhost:3000/author/65116dab4695bbe3b12244a7/books
