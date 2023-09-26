@@ -54,25 +54,12 @@ booksRouter.post("/", async (req, res) => {
   const existingBook = await bookModel.findOne({ isbn: newBook.isbn })
   if (!existingBook) {
     const addedBook = await bookModel.create(newBook);
-    // const author = await authorModel.findOne({ name: newBook.author });
-    // if (!author) {
-    //   const newAuthor = new authorModel({
-    //     name: newBook.author,
-    //     // books: [addedBook],
-    //   });
-    //   await newAuthor.save();
-    // } else {
-    //   author.books.push(addedBook);
-    //   await author.save();
-    // }
     res.status(201).json(addedBook);
   } else {
     res.status(409).send("Book already exists")
   }
 
 });
-
-
 
 
 // remove book
@@ -97,28 +84,28 @@ booksRouter.delete("/", async (req, res) => {
 
 //update book
 booksRouter.put("/", async (req, res) => {
-    const bookId = req.body.bookId;
-    const updatedBook = {
-        title: req.body.title,
-        author: req.body.author,
-        description: req.body.description,
-        price: req.body.price,
-        imageUrl: req.body.imageUrl, 
-        
-    };
-    try {
-        const book = await bookModel.findOne({ _id: bookId });
+  const bookId = req.body.bookId;
+  const updatedBook = {
+    title: req.body.title,
+    author: req.body.author,
+    description: req.body.description,
+    price: req.body.price,
+    imageUrl: req.body.imageUrl,
 
-        if (!book) {
-            return res.status(404).send("Book does not exist");
-        } else {
-            await bookModel.updateOne({ _id: bookId }, updatedBook);
-            res.send("Updated!");
-        }
-    } catch (error) {
-        console.error("Failed to update book:", error);
-        res.status(500).send("An error occurred");
+  };
+  try {
+    const book = await bookModel.findOne({ _id: bookId });
+
+    if (!book) {
+      return res.status(404).send("Book does not exist");
+    } else {
+      await bookModel.updateOne({ _id: bookId }, updatedBook);
+      res.send("Updated!");
     }
+  } catch (error) {
+    console.error("Failed to update book:", error);
+    res.status(500).send("An error occurred");
+  }
 });
 
 module.exports = booksRouter;
