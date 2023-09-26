@@ -17,8 +17,8 @@ export default function SingleBook() {
     window.scrollTo(0, 0)
   }, [id])
   const { book, author } = useFetchBook(`http://localhost:3000/books/${id}`)
-  const { data } = useFetch(`http://localhost:3000/author/${id}`)
-  const books = data as Book[]
+  const { data } = useFetch(`http://localhost:3000/books/${id}/same-author`)
+  const booksByAuthor = data as Book[]
   return (
     <main>
       <Logo />
@@ -35,11 +35,11 @@ export default function SingleBook() {
           <Typography variant='body1'>{book?.description}</Typography>
         </div>
       </div>
-      {books?.length > 1 &&
+      {booksByAuthor?.length > 1 &&
         <div className="moreBooks">
           <Divider><Typography variant='h4'>More titles by {author?.name}</Typography></Divider>
           <div className="booksByAuthor">
-            {books?.map((book, index) => (
+            {booksByAuthor?.map((book, index) => (
               <div key={index}>
                 {
                   book._id !== id ?

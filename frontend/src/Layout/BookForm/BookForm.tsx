@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 import './BookForm.scss';
 
+
 const AddBookPage: React.FC = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -15,6 +16,7 @@ const AddBookPage: React.FC = () => {
   const [price, setPrice] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+
 
   const resetForm = () => {
     setTitle("");
@@ -38,7 +40,7 @@ const AddBookPage: React.FC = () => {
 
     if (response.ok) {
       setSuccessMessage('Book added successfully');
-      resetForm(); // Reset the form fields
+      resetForm(); 
     } else {
       console.log('Failed to add book');
       
@@ -101,6 +103,7 @@ const AddBookPage: React.FC = () => {
                 fullWidth
               />
             </Grid>
+            
             <Grid item xs={6}>
               <Link to="/admin">
                 <Button variant="contained" color="secondary">
@@ -118,6 +121,8 @@ const AddBookPage: React.FC = () => {
         <Snackbar open={!!successMessage} autoHideDuration={3000} onClose={() => setSuccessMessage("")}>
           <MuiAlert severity="success" onClose={() => setSuccessMessage("")}>
             {successMessage}
+
+            
           </MuiAlert>
         </Snackbar>
       </div>
