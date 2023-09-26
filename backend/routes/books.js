@@ -94,26 +94,28 @@ booksRouter.delete("/", async (req, res) => {
 
 //update book
 booksRouter.put("/", async (req, res) => {
-  const bookId = req.body.bookId;
-  const updatedBook = {
-    title: req.body.title,
-    author: req.body.author,
-    description: req.body.description,
-    price: req.body.price,
-  };
-  try {
-    const book = await bookModel.findOne({ _id: bookId });
+    const bookId = req.body.bookId;
+    const updatedBook = {
+        title: req.body.title,
+        author: req.body.author,
+        description: req.body.description,
+        price: req.body.price,
+        imageUrl: req.body.imageUrl, 
+        
+    };
+    try {
+        const book = await bookModel.findOne({ _id: bookId });
 
-    if (!book) {
-      return res.status(404).send("Book does not exist");
-    } else {
-      await bookModel.updateOne({ _id: bookId }, updatedBook);
-      res.send("Updated!");
+        if (!book) {
+            return res.status(404).send("Book does not exist");
+        } else {
+            await bookModel.updateOne({ _id: bookId }, updatedBook);
+            res.send("Updated!");
+        }
+    } catch (error) {
+        console.error("Failed to update book:", error);
+        res.status(500).send("An error occurred");
     }
-  } catch (error) {
-    console.error("Failed to update book:", error);
-    res.status(500).send("An error occurred");
-  }
 });
 
 module.exports = booksRouter;
