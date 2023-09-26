@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
-import { Snackbar } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Snackbar, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -10,13 +10,13 @@ import './BookForm.scss';
 
 
 type Author = {
-  authorId: string; 
+  authorId: string;
   name: string;
 };
 
 const AddBookPage: React.FC = () => {
   const [title, setTitle] = useState("");
-  const [authorId, setAuthorId] = useState("");
+  const [author, setAuthor] = useState("");
   const [isbn, setIsbn] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -45,7 +45,7 @@ const AddBookPage: React.FC = () => {
 
   const resetForm = () => {
     setTitle("");
-    setAuthorId("");
+    setAuthor("");
     setIsbn("");
     setDescription("");
     setPrice("");
@@ -54,7 +54,7 @@ const AddBookPage: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const newBook = {  title, author: authorId, isbn, description, price, imageUrl  };
+    const newBook = { title, author: author, isbn, description, price, imageUrl };
     const response = await fetch('http://localhost:3000/books/', {
       method: 'POST',
       headers: {
@@ -65,16 +65,19 @@ const AddBookPage: React.FC = () => {
 
     if (response.ok) {
       setSuccessMessage('Book added successfully');
-      resetForm(); 
+      resetForm();
     } else {
       console.log('Failed to add book');
     }
   };
-
+  const handleChangeAuthor = (event: SelectChangeEvent) => {
+    // const matchingAuth = authors.find(a => a.name = event.target.value)
+    setAuthor(event.target.value as string)
+  };
   return (
-    <>
-      <h2 className="add-book">Add new book</h2>
-      <div style={{ width: '400px', margin: '0 auto' }}>
+    <main>
+      <Typography variant='h4' className="add-book">Add new book</Typography>
+      <div style={{ margin: '0 auto' }}>
         <form onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -86,19 +89,20 @@ const AddBookPage: React.FC = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <label>Author</label>
-              <select
-                value={authorId}
-                onChange={e => setAuthorId(e.target.value)}
-
-              >
-                <option value="">Select an author</option>
-                {authors.map((author: Author) => (
-                  <option key={author.authorId} value={author.authorId}>
-                    {author.name}
-                  </option>
-                ))}
-              </select>
+              <FormControl fullWidth>
+                <InputLabel id="author-select-id">Author</InputLabel>
+                <Select
+                  labelId='author-select-id'
+                  value={author}
+                  onChange={handleChangeAuthor}
+                >
+                  {authors.map((author) => (
+                    <MenuItem value={author.name}>
+                      {author.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -134,7 +138,7 @@ const AddBookPage: React.FC = () => {
                 fullWidth
               />
             </Grid>
-            
+
             <Grid item xs={6}>
               <Link to="/admin">
                 <Button variant="contained" color="secondary">
@@ -155,7 +159,7 @@ const AddBookPage: React.FC = () => {
           </MuiAlert>
         </Snackbar>
       </div>
-    </>
+    </main>
   );
 };
 
