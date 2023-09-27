@@ -5,6 +5,8 @@
 This project is a mockup of a webshop for a bookstore. The project uses a backend application written in Node.js and frontend application written in React, TypeScript, and SCSS. 
 
 The component library we have used is Material UI - https://mui.com/material-ui/react-select/
+
+
 We created an idea of how we wanted the design to look like in Figma - https://www.figma.com/file/x9PPZ4VGZyif0CBdOlnIMf/BookShop?type=design&node-id=0-1&mode=design&t=D8Vcbi54uWARNwRQ-0
 
 ---
