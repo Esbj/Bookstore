@@ -35,7 +35,6 @@ export default function Payment() {
       shippingMethod: shippingMethod,
       paymentMethod: selectedPaymentMethod,
     };
-    console.log(JSON.stringify(orderWithMethods, null, 2));
 
     const response = await fetch("http://localhost:3000/orders/", {
       method: "POST",
@@ -237,6 +236,7 @@ export default function Payment() {
             {paymentInfoAdded() &&
               <>
                 <div className="total">
+                  <hr />
                   <Typography variant="h4" className="heading">
                     Your Total
                   </Typography>
@@ -248,8 +248,27 @@ export default function Payment() {
                   >
                     {newOrder?.totalPriceWithShipping}$
                   </Typography>
+                  <Typography variant="h6" className="heading">
+                    Tax (25%)
+                  </Typography>
+                  <Typography
+                    sx={{
+                      paddingBottom: "2rem",
+                    }}
+                    variant="h6"
+                  >
+                    {(
+                      newOrder?.totalPriceWithShipping -
+                      newOrder?.totalPriceWithShipping / 1.25
+                    ).toFixed(2)}
+                    $
+                  </Typography>
                 </div>
-                <Button className="checkout-btn" variant="contained" type="submit">
+                <Button
+                  variant="contained"
+                  type="submit"
+                  sx={{ width: "20rem", textAlign: "center", alignSelf: "center" }}
+                >
                   Complete your order
                 </Button>
               </>
@@ -257,7 +276,7 @@ export default function Payment() {
 
           </div>
         </div>
-      </form>
+      </form >
     </>
   );
 }

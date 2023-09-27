@@ -35,15 +35,29 @@ export default function Cart() {
         ) : (
           <>
             {cart.map((book, index) => (
-              <div key={index} className="cartItemInfo">
-                <Typography variant="h5">
-                  {book.title} á {book.price} $
-                </Typography>
+              <div
+                style={{
+                  width: "100%",
+                  textAlign: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div key={index} className="cartItemInfo">
+                  <img
+                    src={book.imageUrl}
+                    style={{ width: "4rem", marginBottom: "1px" }}
+                  />
+                  <Typography sx={{ alignSelf: "center", marginLeft: "1rem" }}>
+                    {book.title} á {book.price} $
+                  </Typography>
+                </div>
                 <div className="buttonsForItem">
                   <IconButton aria-label="remove">
                     <RemoveIcon onClick={() => decreaseQuantity(book)} />
                   </IconButton>
-                  <Typography variant="h4">{book.quantity} pcs</Typography>
+                  <Typography variant="h6">{book.quantity} pcs</Typography>
                   <IconButton aria-label="add">
                     <AddIcon onClick={() => increaseQuantity(book)} />
                   </IconButton>
