@@ -12,11 +12,11 @@ interface ContextValue {
 
 export const OrderContext = createContext<ContextValue>({
     order: [],
-    setOrder: () => {},
+    setOrder: () => { },
     shippingMethod: [],
-    setShippingMethod: () => {},
+    setShippingMethod: () => { },
     paymentMethod: [],
-    setPaymentMethod: () => {},
+    setPaymentMethod: () => { },
 });
 interface Props {
     children: ReactNode;

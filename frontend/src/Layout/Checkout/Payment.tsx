@@ -5,14 +5,16 @@ import { PaymentMethod } from "../../data/OrderInterface";
 import Button from "@mui/material/Button";
 import "./CheckoutPages.scss";
 import Typography from "@mui/material/Typography";
+import { CartContext } from "../../CartContext";
 
 export default function Payment() {
-  const { order, setPaymentMethod, shippingMethod } = useContext(OrderContext);
+  const { order, setPaymentMethod, shippingMethod, setOrder } = useContext(OrderContext);
   const newOrder = order[order.length - 1];
   const [orderId, setOrderId] = useState("");
   const navigate = useNavigate();
-
   const [payment, setPayment] = useState<PaymentMethod | null>(null);
+  const { emptyCart } = useContext(CartContext)
+
   useEffect(() => {
     if (order.length > 0 && payment?.paymentMethod.type && orderId) {
       navigate("/ordercompleted/" + orderId);
@@ -52,8 +54,10 @@ export default function Payment() {
 
       const orderId = responseData._id;
       console.log("the ID:" + orderId);
-
+      emptyCart();
+      setOrder([]);
       setOrderId(orderId);
+
     }
   };
   function paymentInfoAdded() {

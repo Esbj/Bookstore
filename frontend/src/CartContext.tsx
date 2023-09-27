@@ -6,6 +6,7 @@ interface ContextValue {
   addToCart: (book: Book) => void;
   decreaseQuantity: (book: Book) => void;
   increaseQuantity: (book: Book) => void;
+  emptyCart: () => void;
   toggleCart: () => void;
   totalPrice: () => number;
   isCartOpen: boolean;
@@ -13,10 +14,11 @@ interface ContextValue {
 
 export const CartContext = createContext<ContextValue>({
   cart: [],
-  addToCart: () => {},
-  decreaseQuantity: () => {},
-  increaseQuantity: () => {},
-  toggleCart: () => {},
+  addToCart: () => { },
+  decreaseQuantity: () => { },
+  increaseQuantity: () => { },
+  emptyCart: () => { },
+  toggleCart: () => { },
   totalPrice: () => 0,
   isCartOpen: false,
 });
@@ -111,7 +113,10 @@ export default function CartProvider({ children }: Props) {
       }
     });
   };
-
+  const emptyCart = () => {
+    setCart([])
+    localStorage.setItem("cart", JSON.stringify(cart))
+  }
   return (
     <CartContext.Provider
       value={{
@@ -119,6 +124,7 @@ export default function CartProvider({ children }: Props) {
         addToCart,
         decreaseQuantity,
         increaseQuantity,
+        emptyCart,
         isCartOpen,
         totalPrice,
         toggleCart,
