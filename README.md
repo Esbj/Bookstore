@@ -2,7 +2,7 @@
 
 ## Description
 
-This project is a mockup of a webshop for a bookstore. The project uses a backend application written in Node.js and frontend application written in React, TypeScript, and SCSS. 
+This project is a mockup of a webshop for a bookstore. It uses a backend application written in Node.js and frontend application written in React, TypeScript, and SCSS. 
 
 The component library we have used is Material UI - https://mui.com/material-ui/react-select/
 
