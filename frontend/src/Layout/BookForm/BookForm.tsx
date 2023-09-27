@@ -82,6 +82,7 @@ const AddBookPage: React.FC = () => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
+                required
                 label="Title"
                 value={title}
                 onChange={e => setTitle(e.target.value)}
@@ -106,6 +107,7 @@ const AddBookPage: React.FC = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                required
                 label="ISBN"
                 value={isbn}
                 onChange={e => setIsbn(e.target.value)}
@@ -114,6 +116,7 @@ const AddBookPage: React.FC = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                required
                 label="Price"
                 value={price}
                 onChange={e => setPrice(e.target.value)}
@@ -122,6 +125,7 @@ const AddBookPage: React.FC = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                required
                 label="Image URL"
                 value={imageUrl}
                 onChange={e => setImageUrl(e.target.value)}
@@ -130,6 +134,7 @@ const AddBookPage: React.FC = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                required
                 label="Description"
                 value={description}
                 onChange={e => setDescription(e.target.value)}
