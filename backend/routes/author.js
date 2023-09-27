@@ -17,9 +17,7 @@ authorRouter.get("/:id/books", async (req, res) => {
 
     const authorId = req.params.id
     const foundAuthor = await authorModel.findById(authorId);
-    console.log(foundAuthor)
     const books = await bookModel.find({ author: foundAuthor.name })
-    console.log(books)
     res.json(books)
   } catch (error) {
     res.json({ "message": error.message })
