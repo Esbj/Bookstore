@@ -44,6 +44,7 @@ const AddAuthor: React.FC = () => {
           <Grid container spacing={2}>
             <Grid xs={12}>
               <TextField
+                required
                 label="Name"
                 value={name}
                 onChange={e => setName(e.target.value)}
@@ -52,6 +53,7 @@ const AddAuthor: React.FC = () => {
             </Grid>
             <Grid xs={12}>
               <TextField
+                required
                 label="Image URL"
                 value={imageUrl}
                 onChange={e => setImageUrl(e.target.value)}
