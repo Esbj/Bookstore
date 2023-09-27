@@ -57,7 +57,10 @@ export default function Payment() {
       setOrderId(orderId);
     }
   };
-
+  function paymentInfoAdded() {
+    if ((payment?.paymentMethod.details.cardNumber && payment?.paymentMethod.details.CVC && payment?.paymentMethod.details.name) || payment?.paymentMethod.details.phone)
+      return true
+  }
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -229,43 +232,29 @@ export default function Payment() {
                     }));
                   }}
                 />
-                <input
-                  required
-                  className="inputFieldPayment"
-                  type="text"
-                  name="phone"
-                  placeholder="Phone number"
-                  onChange={(e) => {
-                    const newPhoneNumber = e.target.value;
-                    setPayment((prevState) => ({
-                      paymentMethod: {
-                        type: "card",
-                        details: {
-                          ...prevState?.paymentMethod.details,
-                          phone: newPhoneNumber,
-                        },
-                      },
-                    }));
-                  }}
-                />
               </div>
             )}
-            <div className="total">
-              <Typography variant="h4" className="heading">
-                Your Total
-              </Typography>
-              <Typography
-                sx={{
-                  paddingBottom: "2rem",
-                }}
-                variant="h4"
-              >
-                {newOrder?.totalPriceWithShipping}$
-              </Typography>
-            </div>
-            <Button className="checkout-btn" variant="contained" type="submit">
-              Complete your order
-            </Button>
+            {paymentInfoAdded() &&
+              <>
+                <div className="total">
+                  <Typography variant="h4" className="heading">
+                    Your Total
+                  </Typography>
+                  <Typography
+                    sx={{
+                      paddingBottom: "2rem",
+                    }}
+                    variant="h4"
+                  >
+                    {newOrder?.totalPriceWithShipping}$
+                  </Typography>
+                </div>
+                <Button className="checkout-btn" variant="contained" type="submit">
+                  Complete your order
+                </Button>
+              </>
+            }
+
           </div>
         </div>
       </form>
