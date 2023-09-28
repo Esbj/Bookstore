@@ -33,7 +33,7 @@ orderRouter.post("/", async (req, res) => {
         totalPriceWithShipping,
         shippingMethod,
         paymentMethod,
-        status: "Pending",
+        status: "",
     });
 
     try {
