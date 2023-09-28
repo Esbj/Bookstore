@@ -31,12 +31,12 @@ export default function Payment() {
 
     const selectedPaymentMethod = payment.paymentMethod;
 
- 
+
     if (payment.paymentMethod.type === "swish") {
       selectedPaymentMethod.details.phone = swishPhoneNumber;
     }
 
-    
+
     setPaymentMethod([{ paymentMethod: selectedPaymentMethod }]);
 
     const orderWithMethods = {
@@ -65,7 +65,9 @@ export default function Payment() {
       setOrderId(orderId);
     }
   };
- 
+  const isPaymentSet = () => {
+    if ((payment?.paymentMethod.details.CVC && payment.paymentMethod.details.cardNumber && payment.paymentMethod.details.name) || payment?.paymentMethod.details.phone) return true
+  }
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -160,11 +162,11 @@ export default function Payment() {
                   required
                   className="inputFieldPayment"
                   type="text"
-                  value={swishPhoneNumber} 
+                  value={swishPhoneNumber}
                   placeholder="Phone number"
                   onChange={(e) => {
                     const newPhoneNumber = e.target.value;
-                    setSwishPhoneNumber(newPhoneNumber); 
+                    setSwishPhoneNumber(newPhoneNumber);
                   }}
                 />
               </div>
@@ -264,38 +266,40 @@ export default function Payment() {
                 </div>
               ))}
             </div>
-            <div className="total">
-              <hr />
-
-              <Typography className="heading">Your Total</Typography>
-              <Typography
-                sx={{
-                  paddingBottom: "2rem",
-                }}
-              >
-                {newOrder?.totalPriceWithShipping}$
-              </Typography>
-              <Typography className="heading">Tax (25%)</Typography>
-              <Typography
-                sx={{
-                  paddingBottom: "2rem",
-                }}
-              >
-                {(
-                  newOrder?.totalPriceWithShipping -
-                  newOrder?.totalPriceWithShipping / 1.25
-                ).toFixed(2)}
-                $
-              </Typography>
-            </div>
-            <hr />
-            <Button
-              variant="contained"
-              type="submit"
-              sx={{ width: "20rem", textAlign: "center", alignSelf: "center" }}
-            >
-              Complete your order
-            </Button>
+            {isPaymentSet() &&
+              <>
+                <div className="total">
+                  <hr />
+                  <Typography className="heading">Your Total</Typography>
+                  <Typography
+                    sx={{
+                      paddingBottom: "2rem",
+                    }}
+                  >
+                    {newOrder?.totalPriceWithShipping}$
+                  </Typography>
+                  <Typography className="heading">Tax (25%)</Typography>
+                  <Typography
+                    sx={{
+                      paddingBottom: "2rem",
+                    }}
+                  >
+                    {(
+                      newOrder?.totalPriceWithShipping -
+                      newOrder?.totalPriceWithShipping / 1.25
+                    ).toFixed(2)}
+                    $
+                  </Typography>
+                </div>
+                <hr />
+                <Button
+                  variant="contained"
+                  type="submit"
+                  sx={{ width: "20rem", textAlign: "center", alignSelf: "center" }}
+                >
+                  Complete your order
+                </Button></>
+            }
           </div>
         </div>
       </form >
