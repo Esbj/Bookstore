@@ -88,9 +88,10 @@ function Tables({ activeTab, orders, books }: TablesProps) {
                         onChange={(e) => handleStatusChange(order._id, e.target.value)}
                         className="status-select"
                       >
-                        <option value="Cancelled">Cancelled</option>
+                      
                         <option value="Processing">Processing</option>
                         <option value="Sent">Sent</option>
+                        <option value="Cancelled">Cancelled</option>
                       </select>
                     </TableCell>
                   </TableRow>
