@@ -65,6 +65,19 @@ body {
       margin-bottom: 20px;
     }
   }
+  .frontpage-books {
+    margin-top: 1rem;
+    gap: 1rem;
+    .frontpage-book-card {
+      background-color: white;
+      border-radius: 2rem;
+      padding: 1rem;
+      img {
+        width: 300px;
+        height: 400px;
+      }
+    }
+  }
 }
 
 /* Desktop */
@@ -121,6 +134,22 @@ body {
           width: 150px;
           padding-bottom: 2rem;
         }
+      }
+    }
+  }
+  .frontpage-books {
+    margin-top: 1rem;
+    gap: 1rem;
+    .frontpage-book-card {
+      background-color: white;
+      border-radius: 2rem;
+      padding: 1rem;
+      display: block;
+      img {
+        display: block;
+        margin: auto;
+        width: 200px;
+        height: 300px;
       }
     }
   }
