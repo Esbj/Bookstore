@@ -32,7 +32,7 @@ export default function SingleBook() {
     if (book) {
       addToCart(book);
 
-      setSuccessMessage(`${book.title} has been added to your cart.`);
+      setSuccessMessage(`${book.title} added to cart.`);
       setTimeout(() => {
         setSuccessMessage(null);
       }, 3000);
@@ -59,7 +59,7 @@ export default function SingleBook() {
             <Button variant="outlined" onClick={() => book && handleAddToCart(book)}>
               ADD TO CART <AddShoppingCart />
             </Button>
-            <SuccessMessage message={successMessage} book={book || null} />
+          <SuccessMessage message={successMessage} book={book || null} /> 
           </div>
           <div className="description">
             <Typography variant="h4">Description</Typography>
