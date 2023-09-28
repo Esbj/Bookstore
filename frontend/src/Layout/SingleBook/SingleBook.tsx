@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import useFetch from "../../customHooks/useFetch";
 import useFetchBook from "../../customHooks/useFetchSingleBook";
 import Logo from "../../common/Logo";
-import { Typography, Button, IconButton } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 import { AddShoppingCart } from "@mui/icons-material";
 import "./SingleBook.scss";
 import { Book } from "../../data/BookInterface";
@@ -15,7 +15,7 @@ import { CartContext } from "../../CartContext";
 import CartBadge from "../../CartBadge";
 
 export default function SingleBook() {
-  const { addToCart, toggleCart, isCartOpen, cart} = useContext(CartContext);
+  const { addToCart, toggleCart, isCartOpen, cart } = useContext(CartContext);
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
@@ -32,7 +32,6 @@ export default function SingleBook() {
           <Logo />
 
           <CartBadge cartLength={cart.length} onClick={toggleCart} />
-         
         </nav>
 
         <div className="bookInfo">
