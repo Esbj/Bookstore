@@ -31,14 +31,34 @@ function Tables({ activeTab, orders, books }: TablesProps) {
   const handleStatusChange = (orderId: number | undefined, newStatus: string) => {
     const updatedOrders = ordersState.map(order => {
       if (order._id === orderId) {
-        return { ...order, status: newStatus };
+       
+        order.status = newStatus;
+  
+       
+        fetch('http://localhost:3000/orders/', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ orderId, status: newStatus }),
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Failed to update status');
+            }
+          })
+          .catch(error => {
+            console.error(error);
+            
+          });
       }
       return order;
     });
+
+    console.log(updatedOrders)
+  
     setOrdersState(updatedOrders);
   };
-
-
   
   return (
     <React.Fragment>
@@ -53,6 +73,7 @@ function Tables({ activeTab, orders, books }: TablesProps) {
                   <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}>Name</TableCell>
                   <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}>Email</TableCell>
                   <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}>Status</TableCell>
+                  <TableCell sx={{ fontSize: '1.2rem', fontWeight: 'bold', backgroundColor: '#E5C6A7' }}></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -61,19 +82,22 @@ function Tables({ activeTab, orders, books }: TablesProps) {
                     <TableCell>{order._id}</TableCell>
                     <TableCell>{order.firstName}</TableCell>
                     <TableCell>{order.email}</TableCell>
+                    
                     <TableCell>
-                      <select
-                        value={order.status}
+                      <select value={order.status}
                         onChange={(e) => handleStatusChange(order._id, e.target.value)}
                         className="status-select"
                       >
-                        <option value="Cancelled">Cancelled</option>
+                      
                         <option value="Processing">Processing</option>
                         <option value="Sent">Sent</option>
+                        <option value="Cancelled">Cancelled</option>
                       </select>
                     </TableCell>
                   </TableRow>
                 ))}
+
+
               </TableBody>
               
             </Table>

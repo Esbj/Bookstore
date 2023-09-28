@@ -65,7 +65,7 @@ export default function Payment() {
       setOrderId(orderId);
     }
   };
-
+ 
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -160,11 +160,11 @@ export default function Payment() {
                   required
                   className="inputFieldPayment"
                   type="text"
-                  value={swishPhoneNumber} // Use swishPhoneNumber as the value
+                  value={swishPhoneNumber} 
                   placeholder="Phone number"
                   onChange={(e) => {
                     const newPhoneNumber = e.target.value;
-                    setSwishPhoneNumber(newPhoneNumber); // Update the swishPhoneNumber state
+                    setSwishPhoneNumber(newPhoneNumber); 
                   }}
                 />
               </div>
@@ -223,25 +223,6 @@ export default function Payment() {
                         details: {
                           ...prevState?.paymentMethod.details,
                           CVC: newCVC,
-                        },
-                      },
-                    }));
-                  }}
-                />
-                <input
-                  required
-                  className="inputFieldPayment"
-                  type="text"
-                  name="phone"
-                  placeholder="Phone number"
-                  onChange={(e) => {
-                    const newPhoneNumber = e.target.value;
-                    setPayment((prevState) => ({
-                      paymentMethod: {
-                        type: "card",
-                        details: {
-                          ...prevState?.paymentMethod.details,
-                          phone: newPhoneNumber,
                         },
                       },
                     }));
@@ -317,7 +298,7 @@ export default function Payment() {
             </Button>
           </div>
         </div>
-      </form>
+      </form >
     </>
   );
 }
