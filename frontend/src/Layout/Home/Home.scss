@@ -94,10 +94,14 @@ body {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      .header-icons {
+        margin: 2rem;
+        display: flex;
+        gap: 1rem;
+      }
       a,
       a:visited {
         color: black;
-        margin: 2rem;
       }
       .book-icon {
         width: 120px;

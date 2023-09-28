@@ -28,8 +28,6 @@ export default function SingleBook() {
   const { book, author } = useFetchBook(`http://localhost:3000/books/${id}`);
   const { data } = useFetch(`http://localhost:3000/books/${id}/same-author`);
   const booksByAuthor = data as Book[];
-
-
   const handleAddToCart = (book: Book) => {
     if (book) {
       addToCart(book);
