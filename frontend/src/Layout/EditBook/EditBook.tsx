@@ -17,7 +17,7 @@ function EditBook() {
     const [book, setBook] = useState<Book | null>(null);
     const navigate = useNavigate();
     const [deleteSuccessMessage, setDeleteSuccessMessage] = useState<string>('');
-    const [isEditing, setIsEditing] = useState(false); // State to track editing mode
+    const [isEditing, setIsEditing] = useState(false);
     const [editedBook, setEditedBook] = useState<Partial<Book>>({});
 
 
@@ -94,15 +94,11 @@ function EditBook() {
             if (response.ok) {
                 console.log('Book deleted successfully');
 
-
                 setDeleteSuccessMessage('Book deleted successfully');
-
 
                 setTimeout(() => {
                     setDeleteSuccessMessage('');
                     navigate('/admin');
-
-
                 }, 2000);
             } else {
                 throw new Error('Failed to delete book');
