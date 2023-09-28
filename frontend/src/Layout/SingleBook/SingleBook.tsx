@@ -1,31 +1,28 @@
+import { useParams } from "react-router-dom";
+import useFetch from "../../customHooks/useFetch";
+import useFetchBook from "../../customHooks/useFetchSingleBook";
+import Logo from "../../common/Logo";
+import { Typography, Button } from "@mui/material";
+import { AddShoppingCart } from "@mui/icons-material";
+import "./SingleBook.scss";
+import { Book } from "../../data/BookInterface";
+import BookCard from "../../common/BookCard/BookCard";
+import { useContext, useEffect } from "react";
 
-import { useParams } from 'react-router-dom';
-import useFetch from '../../customHooks/useFetch';
-import useFetchBook from '../../customHooks/useFetchSingleBook';
-import Logo from '../../common/Logo';
-import { Typography, Button } from '@mui/material';
-import { AddShoppingCart } from '@mui/icons-material';
-import "./SingleBook.scss"
-import { Book } from '../../data/BookInterface';
-import BookCard from '../../common/BookCard/BookCard';
-import { useContext, useEffect } from 'react';
-import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
-import Grid from '@mui/material/Unstable_Grid2';
-import Cart from '../CartPage/Cart';
-import { CartContext } from '../../CartContext';
+import Grid from "@mui/material/Unstable_Grid2";
+import Cart from "../CartPage/Cart";
+import { CartContext } from "../../CartContext";
+import CartBadge from "../../CartBadge";
 
 export default function SingleBook() {
-  const { addToCart, toggleCart, isCartOpen } = useContext(CartContext);
+  const { addToCart, toggleCart, isCartOpen, cart } = useContext(CartContext);
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-
     window.scrollTo(0, 0);
   }, [id]);
   const { book, author } = useFetchBook(`http://localhost:3000/books/${id}`);
-  const { data } = useFetch(
-    `http://localhost:3000/books/${id}/same-author`
-  );
+  const { data } = useFetch(`http://localhost:3000/books/${id}/same-author`);
   const booksByAuthor = data as Book[];
   return (
     <div>
@@ -33,9 +30,8 @@ export default function SingleBook() {
       <main>
         <nav className="navbar">
           <Logo />
-          <ShoppingCartRoundedIcon onClick={toggleCart}>
-            {" "}
-          </ShoppingCartRoundedIcon>
+
+          <CartBadge cartLength={cart.length} onClick={toggleCart} />
         </nav>
 
         <div className="bookInfo">
@@ -55,10 +51,7 @@ export default function SingleBook() {
         </div>
         {booksByAuthor?.length > 1 && (
           <div className="moreBooks">
-
-            <Typography variant="h4">
-              More titles by {author?.name}
-            </Typography>
+            <Typography variant="h4">More titles by {author?.name}</Typography>
 
             <Grid container className="booksByAuthor">
               {booksByAuthor?.map((book, index) => (

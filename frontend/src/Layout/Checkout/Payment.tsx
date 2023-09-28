@@ -11,6 +11,9 @@ export default function Payment() {
   const newOrder = order[order.length - 1];
   const [orderId, setOrderId] = useState("");
   const navigate = useNavigate();
+  const [swishPhoneNumber, setSwishPhoneNumber] = useState(
+    newOrder.phoneNumber
+  );
 
   const [payment, setPayment] = useState<PaymentMethod | null>(null);
   useEffect(() => {
@@ -27,6 +30,12 @@ export default function Payment() {
     }
 
     const selectedPaymentMethod = payment.paymentMethod;
+
+
+    if (payment.paymentMethod.type === "swish") {
+      selectedPaymentMethod.details.phone = swishPhoneNumber;
+    }
+
 
     setPaymentMethod([{ paymentMethod: selectedPaymentMethod }]);
 
@@ -56,9 +65,8 @@ export default function Payment() {
       setOrderId(orderId);
     }
   };
-  function paymentInfoAdded() {
-    if ((payment?.paymentMethod.details.cardNumber && payment?.paymentMethod.details.CVC && payment?.paymentMethod.details.name) || payment?.paymentMethod.details.phone)
-      return true
+  const isPaymentSet = () => {
+    if ((payment?.paymentMethod.details.CVC && payment.paymentMethod.details.cardNumber && payment.paymentMethod.details.name) || payment?.paymentMethod.details.phone) return true
   }
   return (
     <>
@@ -154,24 +162,15 @@ export default function Payment() {
                   required
                   className="inputFieldPayment"
                   type="text"
-                  value={newOrder.phoneNumber}
+                  value={swishPhoneNumber}
                   placeholder="Phone number"
                   onChange={(e) => {
                     const newPhoneNumber = e.target.value;
-                    setPayment((prevState) => ({
-                      paymentMethod: {
-                        type: "swish",
-                        details: {
-                          ...prevState?.paymentMethod.details,
-                          phone: newPhoneNumber,
-                        },
-                      },
-                    }));
+                    setSwishPhoneNumber(newPhoneNumber);
                   }}
                 />
               </div>
             )}
-
             {payment?.paymentMethod.type === "card" && (
               <div className="paymentDetails">
                 <input
@@ -233,29 +232,57 @@ export default function Payment() {
                 />
               </div>
             )}
-            {paymentInfoAdded() &&
+            <hr />
+            <div style={{ backgroundColor: "#f6ede2" }}>
+              <Typography>Your Order</Typography>
+              {order.map((orderItem, orderIndex) => (
+                <div key={orderIndex}>
+                  {orderItem.books.map((book, bookIndex) => (
+                    <div key={bookIndex}>
+                      <div
+                        style={{
+                          width: "100%",
+                          textAlign: "center",
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <div className="cartItemInfo">
+                          <img
+                            src={book.imageUrl}
+                            style={{ width: "4rem", marginBottom: "1px" }}
+                            alt={book.title}
+                          />
+                          <Typography
+                            sx={{ alignSelf: "center", marginLeft: "1rem" }}
+                          >
+                            {book.title} á {book.price} $
+                          </Typography>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+            {isPaymentSet() &&
               <>
                 <div className="total">
                   <hr />
-                  <Typography variant="h4" className="heading">
-                    Your Total
-                  </Typography>
+                  <Typography className="heading">Your Total</Typography>
                   <Typography
                     sx={{
                       paddingBottom: "2rem",
                     }}
-                    variant="h4"
                   >
                     {newOrder?.totalPriceWithShipping}$
                   </Typography>
-                  <Typography variant="h6" className="heading">
-                    Tax (25%)
-                  </Typography>
+                  <Typography className="heading">Tax (25%)</Typography>
                   <Typography
                     sx={{
                       paddingBottom: "2rem",
                     }}
-                    variant="h6"
                   >
                     {(
                       newOrder?.totalPriceWithShipping -
@@ -264,16 +291,15 @@ export default function Payment() {
                     $
                   </Typography>
                 </div>
+                <hr />
                 <Button
                   variant="contained"
                   type="submit"
                   sx={{ width: "20rem", textAlign: "center", alignSelf: "center" }}
                 >
                   Complete your order
-                </Button>
-              </>
+                </Button></>
             }
-
           </div>
         </div>
       </form >
