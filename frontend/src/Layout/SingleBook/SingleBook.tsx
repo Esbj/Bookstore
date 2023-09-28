@@ -13,10 +13,14 @@ import Grid from "@mui/material/Unstable_Grid2";
 import Cart from "../CartPage/Cart";
 import { CartContext } from "../../CartContext";
 import CartBadge from "../../CartBadge";
+import SuccessMessage from "../../common/SuccessMessage/SuccessMessage";
+import { useState } from 'react';
 
 export default function SingleBook() {
   const { addToCart, toggleCart, isCartOpen, cart } = useContext(CartContext);
   const { id } = useParams<{ id: string }>();
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,6 +28,20 @@ export default function SingleBook() {
   const { book, author } = useFetchBook(`http://localhost:3000/books/${id}`);
   const { data } = useFetch(`http://localhost:3000/books/${id}/same-author`);
   const booksByAuthor = data as Book[];
+
+
+  const handleAddToCart = (book: Book) => {
+    if (book) {
+      addToCart(book);
+
+      setSuccessMessage(`${book.title} has been added to your cart.`);
+      setTimeout(() => {
+        setSuccessMessage(null);
+      }, 3000);
+    }
+
+  }
+
   return (
     <div>
       {isCartOpen && <Cart />}
@@ -40,9 +58,10 @@ export default function SingleBook() {
             <Typography variant="h4">{book?.title}</Typography>
             <Typography variant="subtitle2">Author: {author?.name}</Typography>
             <Typography variant="subtitle1">Price: €{book?.price}</Typography>
-            <Button variant="outlined" onClick={() => book && addToCart(book)}>
+            <Button variant="outlined" onClick={() => book && handleAddToCart(book)}>
               ADD TO CART <AddShoppingCart />
             </Button>
+            <SuccessMessage message={successMessage} book={book || null} />
           </div>
           <div className="description">
             <Typography variant="h4">Description</Typography>
