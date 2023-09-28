@@ -9,6 +9,7 @@ interface ContextValue {
   toggleCart: () => void;
   totalPrice: () => number;
   isCartOpen: boolean;
+  clearCart: () => void;
 }
 
 export const CartContext = createContext<ContextValue>({
@@ -19,6 +20,7 @@ export const CartContext = createContext<ContextValue>({
   toggleCart: () => {},
   totalPrice: () => 0,
   isCartOpen: false,
+  clearCart: () => {},
 });
 
 interface Props {
@@ -45,6 +47,9 @@ export default function CartProvider({ children }: Props) {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+  const clearCart = () => {
+    setCart([]); // Reset the cart to an empty array
+  };
   const totalPrice = () => {
     let total = 0;
     cart.forEach((book) => {
@@ -122,6 +127,7 @@ export default function CartProvider({ children }: Props) {
         isCartOpen,
         totalPrice,
         toggleCart,
+        clearCart,
       }}
     >
       {children}

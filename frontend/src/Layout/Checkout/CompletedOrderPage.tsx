@@ -5,8 +5,24 @@ import CssBaseline from "@mui/material/CssBaseline";
 import "./CheckoutPages.scss";
 import Button from "@mui/material/Button";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import { useContext, useEffect } from "react";
+import { CartContext } from "../../CartContext";
 
 export default function CompletedOrderPage() {
+  const { clearCart } = useContext(CartContext);
+  const { setOrder } = useContext(OrderContext);
+
+  
+  useEffect(() => {
+    clearAllStates();
+  }, []);
+
+  
+  const clearAllStates = () => {
+   
+    setOrder([]);
+    clearCart();
+  };
   const navigate = useNavigate();
   const { orderId } = useParams();
 
